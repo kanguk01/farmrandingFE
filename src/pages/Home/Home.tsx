@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from '../../components/common/Header';
 import ServiceCard from '../../components/common/ServiceCard';
@@ -36,9 +37,11 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ className }) => {
+  const navigate = useNavigate();
+
   const handleBrandingClick = () => {
     console.log('브랜딩 서비스 클릭');
-    // TODO: 브랜딩 페이지로 라우팅
+    navigate('/branding');
   };
 
   const handlePricingClick = () => {

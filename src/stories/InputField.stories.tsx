@@ -53,6 +53,15 @@ export const Calendar: Story = {
   },
 };
 
+export const Grade: Story = {
+  args: {
+    label: '등급  (미선택 시 \'중\'으로 설정됩니다.)',
+    variant: 'grade',
+    onChange: (value) => console.log('입력:', value),
+    onGradeClick: () => alert('등급을 선택하겠습니다!'),
+  },
+};
+
 export const WithValue: Story = {
   args: {
     label: '작물명',
