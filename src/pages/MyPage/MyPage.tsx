@@ -14,7 +14,6 @@ import type { PriceQuoteHistory } from '../../types/priceHistory';
 import iconSort from '../../assets/icon-sort.svg';
 import iconBrush from '../../assets/icon-brush.svg';
 import iconMoney from '../../assets/icon-money.svg';
-import iconDiamond from '../../assets/icon-diamond.svg';
 
 // 애니메이션
 const fadeIn = keyframes`

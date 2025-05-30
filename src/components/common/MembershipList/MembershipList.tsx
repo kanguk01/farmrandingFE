@@ -255,7 +255,7 @@ const MembershipList: React.FC<MembershipListProps> = ({
   onSelectPlan,
   className,
 }) => {
-  const getIconForPlan = (plan: MembershipPlan) => {
+  const getIconForPlan = (plan: MembershipPlan): string | undefined => {
     if (plan.iconType) {
       switch (plan.iconType) {
         case 'shield':
@@ -266,7 +266,7 @@ const MembershipList: React.FC<MembershipListProps> = ({
           return iconDiamond;
       }
     }
-    return null;
+    return undefined;
   };
 
   const getPlanType = (plan: MembershipPlan): 'basic' | 'premium' | 'premium-plus' => {
@@ -298,11 +298,12 @@ const MembershipList: React.FC<MembershipListProps> = ({
             )}
             
             <PlanHeader>
-              {getIconForPlan(plan) ? (
+              {getIconForPlan(plan) && (
                 <PlanIconContainer planType={getPlanType(plan)}>
                   <img src={getIconForPlan(plan)} alt={`${plan.title} 아이콘`} />
                 </PlanIconContainer>
-              ) : (
+              )}
+              {plan.emoji && !getIconForPlan(plan) && (
                 <PlanEmoji>{plan.emoji}</PlanEmoji>
               )}
               <PlanTitle isSpecial={plan.isRecommended || plan.isPremium}>

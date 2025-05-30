@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import iconClose from '../../../assets/icon-close.svg';
 import iconBrush from '../../../assets/icon-brush.svg';
@@ -269,30 +269,6 @@ const BrandStory = styled.p`
   border: 1px solid rgba(31, 65, 187, 0.08);
   word-break: keep-all;
   white-space: pre-wrap;
-`;
-
-const InfoSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-`;
-
-const InfoItem = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 16px;
-  background: #FFFFFF;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-`;
-
-const InfoLabel = styled.span`
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 1.2;
-  color: #6B7280;
 `;
 
 interface BrandingHistory {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled, { keyframes } from 'styled-components';
 import * as echarts from 'echarts';
-import { PriceQuoteHistory } from '../../../types/priceHistory';
+import { type PriceQuoteHistory } from '../../../types/priceHistory';
 import iconClose from '../../../assets/icon-close.svg';
 import iconGraph from '../../../assets/icon-graph.svg';
 

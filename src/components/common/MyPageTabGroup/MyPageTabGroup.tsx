@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import MyPageTab, { MyPageTabOption } from '../MyPageTab/MyPageTab';
+import MyPageTab, { type MyPageTabOption } from '../MyPageTab/MyPageTab';
 
 const TabGroupContainer = styled.div`
   display: flex;

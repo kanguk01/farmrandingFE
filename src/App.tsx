@@ -1,17 +1,16 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
-import Home from './pages/Home';
-import Branding from './pages/Branding';
-import GapVerification from './pages/GapVerification';
-import BrandingKeywords from './pages/BrandingKeywords';
-import CropAppealKeywords from './pages/CropAppealKeywords';
-import LogoImageKeywords from './pages/LogoImageKeywords';
-import BrandNameGeneration from './pages/BrandNameGeneration';
-import BrandResult from './pages/BrandResult';
-import MyPage from './pages/MyPage';
-import PriceQuote from './pages/PriceQuote';
-import PriceResult from './pages/PriceResult';
+import Home from './pages/Home/Home';
+import Branding from './pages/Branding/Branding';
+import BrandingKeywords from './pages/BrandingKeywords/BrandingKeywords';
+import BrandNameGeneration from './pages/BrandNameGeneration/BrandNameGeneration';
+import BrandResult from './pages/BrandResult/BrandResult';
+import MyPage from './pages/MyPage/MyPage';
+import PriceQuote from './pages/PriceQuote/PriceQuote';
+import PriceResult from './pages/PriceResult/PriceResult';
+import CropAppealKeywords from './pages/CropAppealKeywords/CropAppealKeywords';
+import LogoImageKeywords from './pages/LogoImageKeywords/LogoImageKeywords';
+import GapVerification from './pages/GapVerification/GapVerification';
 import './App.css';
 
 const AppContainer = styled.div`

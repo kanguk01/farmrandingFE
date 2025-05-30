@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import Header from '../../components/common/Header/Header';
 import DatePicker from '../../components/common/DatePicker/DatePicker';
 import GradeSelector from '../../components/common/GradeSelector/GradeSelector';
-import iconClose from '../../assets/icon-close.svg';
 import iconCancel from '../../assets/icon-cancel.svg';
 import iconCalendar from '../../assets/icon-calendar.svg';
 import iconGrade from '../../assets/icon-grade.svg';
@@ -41,7 +39,7 @@ const PageContainer = styled.div`
   position: relative;
 `;
 
-const Header = styled.div`
+const PageHeader = styled.div`
   width: 100%;
   height: 47px;
   background: #F4FAFF;
@@ -49,6 +47,7 @@ const Header = styled.div`
   align-items: center;
   padding: 0;
   position: relative;
+  flex-shrink: 0;
 `;
 
 const CloseButton = styled.button`
@@ -169,13 +168,6 @@ const GradeContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  width: 100%;
-`;
-
-const GradeInputRow = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
   width: 100%;
 `;
 
@@ -427,11 +419,11 @@ const PriceQuote: React.FC = () => {
 
   return (
     <PageContainer>
-      <Header>
+      <PageHeader>
         <CloseButton onClick={handleClose} aria-label="닫기">
           <CloseIcon src={iconCancel} alt="닫기" />
         </CloseButton>
-      </Header>
+      </PageHeader>
 
       <ContentArea>
         <MainContent>

@@ -15,6 +15,34 @@ const fadeIn = keyframes`
   }
 `;
 
+const slideInUp = keyframes`
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const dots = keyframes`
+  0%, 20% {
+    color: transparent;
+    text-shadow: .25em 0 0 transparent, .5em 0 0 transparent;
+  }
+  40% {
+    color: #1F41BB;
+    text-shadow: .25em 0 0 transparent, .5em 0 0 transparent;
+  }
+  60% {
+    text-shadow: .25em 0 0 #1F41BB, .5em 0 0 transparent;
+  }
+  80%, 100% {
+    text-shadow: .25em 0 0 #1F41BB, .5em 0 0 #1F41BB;
+  }
+`;
+
 const pulse = keyframes`
   0%, 100% {
     transform: scale(1);
