@@ -43,6 +43,7 @@ const CardContainer = styled.div`
   position: relative;
   overflow: hidden;
   animation: ${slideInUp} 0.6s ease-out;
+  cursor: pointer;
 
   &::before {
     content: '';
@@ -229,6 +230,7 @@ interface BrandingCardProps {
   title: string;
   description: string;
   imageUrl?: string;
+  onClick?: () => void;
   onDelete?: () => void;
   className?: string;
 }
@@ -237,16 +239,22 @@ const BrandingCard: React.FC<BrandingCardProps> = ({
   title,
   description,
   imageUrl = 'https://placehold.co/72x72/E8F4FF/1F41BB?text=🌱',
+  onClick,
   onDelete,
   className,
 }) => {
+  const handleCardClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    onClick?.();
+  };
+
   const handleDeleteClick = (e: React.MouseEvent) => {
     e.stopPropagation();
     onDelete?.();
   };
 
   return (
-    <CardContainer className={className}>
+    <CardContainer className={className} onClick={handleCardClick}>
       <ContentContainer>
         <ImageContainer>
           <ProductImage 

@@ -16,10 +16,35 @@ const meta: Meta<typeof BrandingCard> = {
     },
   },
   tags: ['autodocs'],
+  argTypes: {
+    title: {
+      control: 'text',
+      description: '브랜드 제목'
+    },
+    description: {
+      control: 'text',
+      description: '브랜드 설명'
+    },
+    imageUrl: {
+      control: 'text',
+      description: '브랜드 이미지 URL'
+    },
+    onClick: {
+      action: 'clicked',
+      description: '카드 클릭 이벤트'
+    },
+    onDelete: {
+      action: 'deleted',
+      description: '삭제 버튼 클릭 이벤트'
+    },
+    className: {
+      control: 'text',
+      description: '추가 CSS 클래스'
+    }
+  }
 };
 
 export default meta;
-
 type Story = StoryObj<typeof BrandingCard>;
 
 export const Apple: Story = {
@@ -27,7 +52,6 @@ export const Apple: Story = {
     title: '뽀사과',
     description: '한 입에 쏙, 귀여움이 톡!',
     imageUrl: 'https://placehold.co/72x72/ff6b6b/ffffff?text=🍎',
-    onDelete: () => alert('뽀사과 카드가 삭제되었습니다!'),
   },
   parameters: {
     docs: {
@@ -43,7 +67,6 @@ export const Potato: Story = {
     title: '하은 감자',
     description: '자연이 키운 진심의 맛',
     imageUrl: 'https://placehold.co/72x72/8b4513/ffffff?text=🥔',
-    onDelete: () => alert('하은 감자 카드가 삭제되었습니다!'),
   },
   parameters: {
     docs: {
@@ -59,7 +82,6 @@ export const GreenVegetable: Story = {
     title: '싱싱초록',
     description: '노지에서 자란 고품질 오이고추, 바로 산지에서 보내드립니다.',
     imageUrl: 'https://placehold.co/72x72/32cd32/ffffff?text=🌶️',
-    onDelete: () => alert('싱싱초록 카드가 삭제되었습니다!'),
   },
   parameters: {
     docs: {
@@ -75,7 +97,6 @@ export const Tomato: Story = {
     title: '토담토',
     description: '햇살과 정성을 가득 담은 산지직송 대추토마토, 토담토가 전하는 자연 그대로의 달콤함.',
     imageUrl: 'https://placehold.co/72x72/FF6347/ffffff?text=🍅',
-    onDelete: () => alert('토담토 카드가 삭제되었습니다!'),
   },
   parameters: {
     docs: {
@@ -86,62 +107,17 @@ export const Tomato: Story = {
   },
 };
 
-export const ModernEffects: Story = {
+export const WithoutDelete: Story = {
   args: {
     title: '프리미엄 딸기',
     description: '달콤하고 신선한 프리미엄 딸기입니다.',
     imageUrl: 'https://placehold.co/72x72/E91E63/ffffff?text=🍓',
-    onDelete: () => alert('프리미엄 딸기 카드가 삭제되었습니다!'),
+    // onDelete를 제공하지 않음
   },
   parameters: {
     docs: {
       description: {
-        story: '호버 시 이미지 확대 효과, shimmer 애니메이션, 상단 그라데이션 바 등 모던한 인터랙션 효과들을 확인할 수 있습니다.',
-      },
-    },
-  },
-};
-
-export const AllCards: Story = {
-  render: () => (
-    <div style={{ 
-      display: 'flex', 
-      flexDirection: 'column', 
-      gap: '16px',
-      padding: '24px',
-      background: '#F4FAFF',
-      borderRadius: '16px'
-    }}>
-      <BrandingCard
-        title="뽀사과"
-        description="한 입에 쏙, 귀여움이 톡!"
-        imageUrl="https://placehold.co/72x72/ff6b6b/ffffff?text=🍎"
-        onDelete={() => alert('뽀사과 삭제!')}
-      />
-      <BrandingCard
-        title="하은 감자"
-        description="자연이 키운 진심의 맛"
-        imageUrl="https://placehold.co/72x72/8b4513/ffffff?text=🥔"
-        onDelete={() => alert('하은 감자 삭제!')}
-      />
-      <BrandingCard
-        title="싱싱초록"
-        description="노지에서 자란 고품질 오이고추, 바로 산지에서 보내드립니다."
-        imageUrl="https://placehold.co/72x72/32cd32/ffffff?text=🌶️"
-        onDelete={() => alert('싱싱초록 삭제!')}
-      />
-      <BrandingCard
-        title="토담토"
-        description="햇살과 정성을 가득 담은 산지직송 대추토마토, 토담토가 전하는 자연 그대로의 달콤함."
-        imageUrl="https://placehold.co/72x72/FF6347/ffffff?text=🍅"
-        onDelete={() => alert('토담토 삭제!')}
-      />
-    </div>
-  ),
-  parameters: {
-    docs: {
-      description: {
-        story: '여러 개의 브랜딩 카드가 함께 배치된 모습입니다. 실제 마이페이지에서의 배치와 유사합니다.',
+        story: '삭제 버튼이 없는 버전입니다. onDelete prop을 제공하지 않으면 삭제 버튼이 표시되지 않습니다.',
       },
     },
   },
