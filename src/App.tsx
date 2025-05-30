@@ -23,6 +23,7 @@ const AppContainer = styled.div`
   align-items: flex-start;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -36,9 +37,10 @@ const ContentWrapper = styled.div`
   min-height: 100vh;
   background: #F4FAFF;
   position: relative;
+  overflow-x: hidden;
   
   @media (max-width: 402px) {
-    max-width: 100%;
+    max-width: 100vw;
   }
 `;
 

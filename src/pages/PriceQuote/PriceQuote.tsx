@@ -93,7 +93,8 @@ const MainContent = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 88px;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   animation: ${fadeIn} 0.8s ease-out;
 `;
 
@@ -269,8 +270,11 @@ const CalendarIcon = styled.img`
 const ButtonContainer = styled.div`
   position: absolute;
   bottom: 114px;
-  left: 51px;
-  width: 300px;
+  left: 16px;
+  right: 16px;
+  max-width: 300px;
+  margin: 0 auto;
+  box-sizing: border-box;
   animation: ${slideInUp} 0.8s ease-out 0.4s both;
 `;
 
@@ -333,6 +337,8 @@ const ButtonText = styled.span`
   color: #FFFFFF;
   position: relative;
   z-index: 1;
+  text-align: center;
+  width: 100%;
 `;
 
 interface FormData {

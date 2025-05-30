@@ -102,7 +102,8 @@ const TitleSection = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   animation: ${fadeIn} 0.8s ease-out;
 `;
 
@@ -122,7 +123,8 @@ const PriceSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   animation: ${slideInUp} 0.8s ease-out 0.2s both;
 `;
 
@@ -183,7 +185,8 @@ const PriceValue = styled.span`
 `;
 
 const ChartSection = styled.div`
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -223,7 +226,8 @@ const ChartWrapper = styled.div`
 `;
 
 const ButtonSection = styled.div`
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   display: flex;
   gap: 16px;
   padding-bottom: 40px;

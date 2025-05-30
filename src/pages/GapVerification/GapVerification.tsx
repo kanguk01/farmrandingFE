@@ -64,8 +64,10 @@ const ContentArea = styled.div`
 const MainContent = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 88px;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
 `;
 
 const Title = styled.h1`
@@ -195,8 +197,12 @@ const StatusText = styled.p<{ $isSuccess: boolean }>`
 const ButtonContainer = styled.div`
   position: absolute;
   bottom: 114px;
-  left: 51px;
-  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 300px;
+  padding: 0 16px;
+  box-sizing: border-box;
   display: flex;
   justify-content: stretch;
   align-items: stretch;

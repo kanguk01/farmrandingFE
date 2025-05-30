@@ -65,7 +65,8 @@ const ContentArea = styled.div`
 const MainContent = styled.div`
   display: flex;
   flex-direction: column;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   height: 100%;
   max-height: calc(874px - 47px - 51px - 114px - 32px);
 `;
@@ -121,8 +122,12 @@ const FadeOverlay = styled.div`
 const ButtonContainer = styled.div`
   position: absolute;
   bottom: 114px;
-  left: 51px;
-  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 300px;
+  padding: 0 16px;
+  box-sizing: border-box;
   display: flex;
   justify-content: stretch;
   align-items: stretch;

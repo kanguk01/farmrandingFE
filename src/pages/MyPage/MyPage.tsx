@@ -56,8 +56,8 @@ const ContentArea = styled.div`
   padding: 30px 16px 40px 16px;
   flex: 1;
   width: 100%;
-  box-sizing: border-box;
   max-width: 100%;
+  box-sizing: border-box;
   overflow-x: hidden;
 `;
 

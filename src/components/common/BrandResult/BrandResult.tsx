@@ -9,7 +9,7 @@ const BrandResultCard = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 40px 28px;
-  width: 358px;
+  width: 100%;
   background: #ffffff;
   border-radius: 16px;
   box-shadow: 0px 4px 20px 0px rgba(31, 65, 187, 0.08);

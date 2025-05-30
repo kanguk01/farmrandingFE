@@ -104,7 +104,7 @@ const BrandResultContainer = styled.div`
 
 const KeywordSection = styled.div`
   width: 100%;
-  max-width: 358px;
+  max-width: 100%;
   margin-bottom: 48px;
   animation: ${fadeInUp} 0.8s ease-out 0.4s both;
 `;

@@ -116,7 +116,8 @@ const StatusText = styled.h2<{ $isVisible: boolean }>`
 
 const BrandNameContainer = styled.div`
   position: relative;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   min-height: 120px;
   display: flex;
   align-items: center;
@@ -178,7 +179,8 @@ const ActionButtons = styled.div<{ $isVisible: boolean }>`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
   opacity: ${props => props.$isVisible ? 1 : 0};
   transform: ${props => props.$isVisible ? 'translateY(0)' : 'translateY(20px)'};
   transition: all 0.6s ease;
@@ -211,8 +213,12 @@ const RegenerateButton = styled.button`
 const ButtonContainer = styled.div`
   position: absolute;
   bottom: 114px;
-  left: 51px;
-  width: 300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 300px;
+  padding: 0 16px;
+  box-sizing: border-box;
   display: flex;
   justify-content: stretch;
   align-items: stretch;

@@ -19,12 +19,13 @@
   box-sizing: border-box;
 }
 
-html, body {
+html {
   margin: 0;
   padding: 0;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -33,11 +34,15 @@ body {
   width: 100%;
   min-height: 100vh;
   background-color: #F4FAFF;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 #root {
   width: 100%;
   min-height: 100vh;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 a {
