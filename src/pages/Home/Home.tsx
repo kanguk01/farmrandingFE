@@ -46,7 +46,7 @@ const Home: React.FC<HomeProps> = ({ className }) => {
 
   const handlePricingClick = () => {
     console.log('가격 예측 서비스 클릭');
-    // TODO: 가격 예측 페이지로 라우팅
+    navigate('/price-quote');
   };
 
   const handleLogoClick = () => {

@@ -10,6 +10,8 @@ import LogoImageKeywords from './pages/LogoImageKeywords';
 import BrandNameGeneration from './pages/BrandNameGeneration';
 import BrandResult from './pages/BrandResult';
 import MyPage from './pages/MyPage';
+import PriceQuote from './pages/PriceQuote';
+import PriceResult from './pages/PriceResult';
 import './App.css';
 
 const AppContainer = styled.div`
@@ -55,6 +57,8 @@ function App() {
             <Route path="/brand-name-generation" element={<BrandNameGeneration />} />
             <Route path="/brand-result" element={<BrandResult />} />
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="/price-quote" element={<PriceQuote />} />
+            <Route path="/price-result" element={<PriceResult />} />
             {/* 추가 페이지 라우트는 여기에 추가 */}
           </Routes>
         </ContentWrapper>
