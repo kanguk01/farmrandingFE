@@ -537,9 +537,13 @@ const PriceResult: React.FC = () => {
   };
 
   const handleComplete = () => {
-    // TODO: 결과 저장 또는 공유 기능
-    console.log('결과 완료');
-    navigate('/');
+    // 가격 제안 이력을 마이페이지에 저장하는 로직
+    // TODO: 실제로는 API 호출을 통해 이력 저장
+    
+    // 마이페이지의 가격 제안 이력 탭으로 이동
+    navigate('/mypage', { 
+      state: { initialTab: 'pricing' } 
+    });
   };
 
   const toggleSeries = (seriesKey: keyof typeof visibleSeries) => {

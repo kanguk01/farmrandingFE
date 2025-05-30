@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import Header from '../../components/common/Header/Header';
 import MyPageTabGroup from '../../components/common/MyPageTabGroup/MyPageTabGroup';
 import type { MyPageTabOption } from '../../components/common/MyPageTab/MyPageTab';
 import BrandingCard from '../../components/common/BrandingCard/BrandingCard';
+import PriceQuoteCard from '../../components/common/PriceQuoteCard/PriceQuoteCard';
+import PriceQuoteDetailModal from '../../components/common/PriceQuoteDetailModal/PriceQuoteDetailModal';
 import PersonalInfo, { type PersonalInfoData } from '../../components/common/PersonalInfo/PersonalInfo';
+import type { PriceQuoteHistory } from '../../types/priceHistory';
 import iconSort from '../../assets/icon-sort.svg';
 import iconBrush from '../../assets/icon-brush.svg';
 import iconMoney from '../../assets/icon-money.svg';
@@ -291,8 +294,91 @@ type SortType = 'latest' | 'oldest' | 'name';
 
 const MyPage: React.FC = () => {
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState<MyPageTabOption>('branding');
+  const location = useLocation();
+  const [selectedTab, setSelectedTab] = useState<MyPageTabOption>(
+    location.state?.initialTab || 'branding'
+  );
   const [sortType, setSortType] = useState<SortType>('latest');
+  const [selectedPriceHistory, setSelectedPriceHistory] = useState<PriceQuoteHistory | null>(null);
+  const [isDetailModalVisible, setIsDetailModalVisible] = useState(false);
+
+  // 5년간 더미 데이터 생성 함수
+  const generatePriceData = () => {
+    const basePrice = 2800;
+    const data = [];
+    
+    for (let year = 2019; year <= 2023; year++) {
+      for (let month = 1; month <= 12; month++) {
+        const variation = Math.random() * 0.4 - 0.2;
+        const seasonalFactor = Math.sin((month - 1) * Math.PI / 6) * 0.15;
+        
+        const avgPrice = basePrice * (1 + variation + seasonalFactor);
+        const minPrice = avgPrice * (0.7 + Math.random() * 0.2);
+        const maxPrice = avgPrice * (1.1 + Math.random() * 0.2);
+        
+        data.push({
+          date: `${year}-${month.toString().padStart(2, '0')}`,
+          minPrice: Math.round(minPrice),
+          maxPrice: Math.round(maxPrice),
+          avgPrice: Math.round(avgPrice)
+        });
+      }
+    }
+    
+    return data;
+  };
+
+  // Mock 가격 제안 이력 데이터
+  const priceQuoteHistory: PriceQuoteHistory[] = [
+    {
+      id: '1',
+      request: {
+        cropName: '감자',
+        variety: '수미',
+        grade: '상',
+        harvestDate: new Date('2025-05-15')
+      },
+      result: {
+        fairPrice: 2745,
+        priceData: generatePriceData()
+      },
+      createdAt: '2025.05.15',
+      unit: 'kg',
+      quantity: 1
+    },
+    {
+      id: '2',
+      request: {
+        cropName: '사과',
+        variety: '후지',
+        grade: '특',
+        harvestDate: new Date('2025-05-14')
+      },
+      result: {
+        fairPrice: 6900,
+        priceData: generatePriceData()
+      },
+      createdAt: '2025.05.15',
+      unit: 'kg',
+      quantity: 1
+    },
+    {
+      id: '3',
+      request: {
+        cropName: '아스파라거스',
+        variety: '그린아스파라',
+        grade: '중',
+        harvestDate: new Date('2025-05-14')
+      },
+      result: {
+        fairPrice: 14700,
+        priceData: generatePriceData()
+      },
+      createdAt: '2025.05.14',
+      unit: 'kg',
+      quantity: 1
+    }
+  ];
 
   // Mock 브랜딩 이력 데이터
   const brandingHistory: BrandingHistory[] = [
@@ -353,7 +439,7 @@ const MyPage: React.FC = () => {
     }
   };
 
-  const getSortedHistory = () => {
+  const getSortedBrandingHistory = () => {
     const historyCopy = [...brandingHistory];
     
     switch (sortType) {
@@ -368,9 +454,38 @@ const MyPage: React.FC = () => {
     }
   };
 
-  const getGroupedHistory = () => {
-    const sortedHistory = getSortedHistory();
+  const getSortedPriceHistory = () => {
+    const historyCopy = [...priceQuoteHistory];
+    
+    switch (sortType) {
+      case 'latest':
+        return historyCopy.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+      case 'oldest':
+        return historyCopy.sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime());
+      case 'name':
+        return historyCopy.sort((a, b) => a.request.cropName.localeCompare(b.request.cropName));
+      default:
+        return historyCopy;
+    }
+  };
+
+  const getGroupedBrandingHistory = () => {
+    const sortedHistory = getSortedBrandingHistory();
     const grouped: { [date: string]: BrandingHistory[] } = {};
+    
+    sortedHistory.forEach(item => {
+      if (!grouped[item.createdAt]) {
+        grouped[item.createdAt] = [];
+      }
+      grouped[item.createdAt].push(item);
+    });
+    
+    return grouped;
+  };
+
+  const getGroupedPriceHistory = () => {
+    const sortedHistory = getSortedPriceHistory();
+    const grouped: { [date: string]: PriceQuoteHistory[] } = {};
     
     sortedHistory.forEach(item => {
       if (!grouped[item.createdAt]) {
@@ -396,8 +511,23 @@ const MyPage: React.FC = () => {
     // TODO: 실제 삭제 로직 구현
   };
 
+  const handleDeletePriceQuote = (id: string) => {
+    console.log(`가격 제안 ${id} 삭제`);
+    // TODO: 실제 삭제 로직 구현
+  };
+
+  const handlePriceQuoteClick = (priceHistory: PriceQuoteHistory) => {
+    setSelectedPriceHistory(priceHistory);
+    setIsDetailModalVisible(true);
+  };
+
+  const handleCloseDetailModal = () => {
+    setIsDetailModalVisible(false);
+    setSelectedPriceHistory(null);
+  };
+
   const renderBrandingContent = () => {
-    const groupedHistory = getGroupedHistory();
+    const groupedHistory = getGroupedBrandingHistory();
     const dateKeys = Object.keys(groupedHistory);
 
     if (dateKeys.length === 0) {
@@ -440,23 +570,60 @@ const MyPage: React.FC = () => {
     );
   };
 
+  const renderPricingContent = () => {
+    const groupedHistory = getGroupedPriceHistory();
+    const dateKeys = Object.keys(groupedHistory);
+
+    if (dateKeys.length === 0) {
+      return (
+        <EmptyState>
+          <EmptyIconContainer>
+            <EmptyIcon src={iconMoney} alt="가격제안" />
+          </EmptyIconContainer>
+          <EmptyTitle>가격 제안 이력이 없습니다</EmptyTitle>
+          <EmptyDescription>
+            첫 번째 가격 제안을 받아보세요!<br />
+            홈에서 가격 제안 서비스를 시작할 수 있습니다.
+          </EmptyDescription>
+        </EmptyState>
+      );
+    }
+
+    return (
+      <HistoryListContainer>
+        {dateKeys.map(date => (
+          <DateGroup key={date}>
+            <DateHeader>
+              <DateText>{date}</DateText>
+              <DateLine />
+            </DateHeader>
+            <CardsList>
+              {groupedHistory[date].map(item => (
+                <PriceQuoteCard
+                  key={item.id}
+                  cropName={item.request.cropName}
+                  variety={item.request.variety}
+                  grade={item.request.grade}
+                  fairPrice={item.result.fairPrice}
+                  unit={item.unit}
+                  quantity={item.quantity}
+                  onClick={() => handlePriceQuoteClick(item)}
+                  onDelete={() => handleDeletePriceQuote(item.id)}
+                />
+              ))}
+            </CardsList>
+          </DateGroup>
+        ))}
+      </HistoryListContainer>
+    );
+  };
+
   const renderTabContent = () => {
     switch (selectedTab) {
       case 'branding':
         return renderBrandingContent();
       case 'pricing':
-        return (
-          <EmptyState>
-            <EmptyIconContainer>
-              <EmptyIcon src={iconMoney} alt="가격" />
-            </EmptyIconContainer>
-            <EmptyTitle>가격 제안 이력이 없습니다</EmptyTitle>
-            <EmptyDescription>
-              아직 가격 제안 기능이 준비되지 않았습니다.<br />
-              곧 업데이트될 예정입니다!
-            </EmptyDescription>
-          </EmptyState>
-        );
+        return renderPricingContent();
       case 'membership':
         return (
           <EmptyState>
@@ -496,7 +663,7 @@ const MyPage: React.FC = () => {
         </TabContainer>
 
         <HistoryContainer>
-          {selectedTab === 'branding' && (
+          {(selectedTab === 'branding' || selectedTab === 'pricing') && (
             <SortSection>
               <SortButton onClick={handleSort}>
                 <SortIcon src={iconSort} alt="정렬" />
@@ -508,6 +675,12 @@ const MyPage: React.FC = () => {
           {renderTabContent()}
         </HistoryContainer>
       </ContentArea>
+
+      <PriceQuoteDetailModal
+        isVisible={isDetailModalVisible}
+        priceHistory={selectedPriceHistory}
+        onClose={handleCloseDetailModal}
+      />
     </PageContainer>
   );
 };
