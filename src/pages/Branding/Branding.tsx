@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputField from '../../components/common/InputField/InputField';
 import Button from '../../components/common/Button/Button';
-import GradeDropdown, { Grade } from '../../components/common/GradeDropdown';
+import GradeSelector from '../../components/common/GradeSelector/GradeSelector';
 import iconCancel from '../../assets/icons/icon-cancel.svg';
+import iconGrade from '../../assets/icon-grade.svg';
 
 const PageContainer = styled.div`
   width: 100%;
@@ -89,9 +90,57 @@ const FormContainer = styled.div`
   width: 100%;
 `;
 
-const GradeFieldContainer = styled.div`
-  position: relative;
+const GradeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   width: 100%;
+`;
+
+const Label = styled.label`
+  font-family: 'Jalnan 2', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.18;
+  color: #000000;
+`;
+
+const GradeInput = styled.div`
+  width: 100%;
+  height: 33px;
+  background: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.21;
+  color: #9C9C9C;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0px 8px 24px 0px rgba(31, 65, 187, 0.2);
+    transform: translateY(-1px);
+  }
+`;
+
+const GradeIcon = styled.img`
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) saturate(100%) invert(0%) sepia(0%) saturate(7500%) hue-rotate(75deg) brightness(98%) contrast(100%);
+  transition: all 0.3s ease;
+
+  ${GradeInput}:hover & {
+    filter: brightness(0) saturate(100%) invert(25%) sepia(98%) saturate(1653%) hue-rotate(221deg) brightness(96%) contrast(91%);
+    transform: scale(1.1);
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -116,7 +165,7 @@ const Branding: React.FC = () => {
     cultivationMethod: '',
     grade: '',
   });
-  const [isGradeDropdownOpen, setIsGradeDropdownOpen] = useState(false);
+  const [showGradeSelector, setShowGradeSelector] = useState(false);
 
   const handleClose = () => {
     navigate('/');
@@ -129,16 +178,12 @@ const Branding: React.FC = () => {
     }));
   };
 
-  const handleGradeClick = () => {
-    setIsGradeDropdownOpen(!isGradeDropdownOpen);
-  };
-
-  const handleGradeSelect = (grade: Grade) => {
-    handleInputChange('grade', grade);
-  };
-
-  const handleGradeDropdownClose = () => {
-    setIsGradeDropdownOpen(false);
+  const handleGradeSelect = (grade: string) => {
+    setFormData(prev => ({
+      ...prev,
+      grade: grade
+    }));
+    setShowGradeSelector(false);
   };
 
   const handleNext = () => {
@@ -149,6 +194,17 @@ const Branding: React.FC = () => {
   const isFormValid = formData.cropName.trim() !== '' && 
                      formData.variety.trim() !== '' && 
                      formData.cultivationMethod.trim() !== '';
+
+  const getGradeDisplayText = () => {
+    if (!formData.grade) return '-';
+    const gradeMap: { [key: string]: string } = {
+      '특': '특급 (최고급)',
+      '상': '상급 (우수)',
+      '중': '중급 (보통)',
+      '하': '하급 (일반)'
+    };
+    return gradeMap[formData.grade] || formData.grade;
+  };
 
   return (
     <PageContainer>
@@ -187,20 +243,13 @@ const Branding: React.FC = () => {
               variant="default"
             />
 
-            <GradeFieldContainer>
-              <InputField
-                label="등급  (미선택 시 '중'으로 설정됩니다.)"
-                value={formData.grade}
-                onChange={(value) => handleInputChange('grade', value)}
-                variant="grade"
-                onGradeClick={handleGradeClick}
-              />
-              <GradeDropdown
-                isOpen={isGradeDropdownOpen}
-                onSelect={handleGradeSelect}
-                onClose={handleGradeDropdownClose}
-              />
-            </GradeFieldContainer>
+            <GradeContainer>
+              <Label>등급 (미선택 시 '중'으로 설정됩니다.)</Label>
+              <GradeInput onClick={() => setShowGradeSelector(true)}>
+                <span>{getGradeDisplayText()}</span>
+                <GradeIcon src={iconGrade} alt="등급" />
+              </GradeInput>
+            </GradeContainer>
           </FormContainer>
         </MainContent>
       </ContentArea>
@@ -208,13 +257,20 @@ const Branding: React.FC = () => {
       <ButtonContainer>
         <Button
           variant="primary"
-          size="large"
           onClick={handleNext}
           disabled={!isFormValid}
         >
           다음
         </Button>
       </ButtonContainer>
+
+      {showGradeSelector && (
+        <GradeSelector
+          selectedGrade={formData.grade}
+          onGradeSelect={handleGradeSelect}
+          onClose={() => setShowGradeSelector(false)}
+        />
+      )}
     </PageContainer>
   );
 };
