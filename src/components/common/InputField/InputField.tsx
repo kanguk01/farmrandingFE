@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import iconCopy from '../../../assets/icon-copy.svg';
 import iconCalendar from '../../../assets/icon-calendar.svg';
+import iconGrade from '../../../assets/icon-grade.svg';
 
 const INPUT_FIELD_WIDTH = 320;
 const INPUT_FIELD_HEIGHT_NORMAL = 33;
@@ -144,7 +145,29 @@ const CalendarIcon = styled.img`
   }
 `;
 
-export type InputFieldVariant = 'default' | 'withCopy' | 'large' | 'calendar';
+const GradeIconContainer = styled.div`
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 27px;
+  height: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const GradeIcon = styled.img`
+  width: 27px;
+  height: 27px;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export type InputFieldVariant = 'default' | 'withCopy' | 'large' | 'calendar' | 'grade';
 
 interface InputFieldProps {
   label: string;
@@ -153,6 +176,7 @@ interface InputFieldProps {
   onChange?: (value: string) => void;
   onCopy?: () => void;
   onCalendarClick?: () => void;
+  onGradeClick?: () => void;
   variant?: InputFieldVariant;
   className?: string;
   disabled?: boolean;
@@ -165,6 +189,7 @@ const InputFieldComponent: React.FC<InputFieldProps> = ({
   onChange,
   onCopy,
   onCalendarClick,
+  onGradeClick,
   variant = 'default',
   className,
   disabled = false,
@@ -182,11 +207,23 @@ const InputFieldComponent: React.FC<InputFieldProps> = ({
     onCalendarClick?.();
   };
 
+  const handleGradeClick = () => {
+    onGradeClick?.();
+  };
+
+  const handleInputClick = () => {
+    if (hasGrade && onGradeClick) {
+      onGradeClick();
+    }
+  };
+
   const isLarge = variant === 'large';
   const hasCalendar = variant === 'calendar';
+  const hasGrade = variant === 'grade';
   const hasCopy = variant === 'withCopy' || variant === 'large';
   const inputHeight = isLarge ? INPUT_FIELD_HEIGHT_LARGE : INPUT_FIELD_HEIGHT_NORMAL;
   const calendarPlaceholder = hasCalendar ? ' 년 / 월 / 일' : placeholder;
+  const gradePlaceholder = hasGrade ? '-' : placeholder;
 
   return (
     <Container className={className}>
@@ -215,12 +252,15 @@ const InputFieldComponent: React.FC<InputFieldProps> = ({
         ) : (
           <InputField
             type="text"
-            placeholder={calendarPlaceholder}
+            placeholder={hasGrade ? gradePlaceholder : calendarPlaceholder}
             value={value}
             onChange={handleInputChange}
-            hasIcon={hasCalendar}
+            onClick={handleInputClick}
+            hasIcon={hasCalendar || hasGrade}
             disabled={disabled}
+            readOnly={hasGrade}
             aria-label={label}
+            style={{ cursor: hasGrade ? 'pointer' : 'text' }}
           />
         )}
         {hasCalendar && (
@@ -231,6 +271,15 @@ const InputFieldComponent: React.FC<InputFieldProps> = ({
               onClick={onCalendarClick ? handleCalendarClick : undefined}
             />
           </CalendarIconContainer>
+        )}
+        {hasGrade && (
+          <GradeIconContainer>
+            <GradeIcon 
+              src={iconGrade} 
+              alt="등급" 
+              onClick={onGradeClick ? handleGradeClick : undefined}
+            />
+          </GradeIconContainer>
         )}
       </InputContainer>
     </Container>

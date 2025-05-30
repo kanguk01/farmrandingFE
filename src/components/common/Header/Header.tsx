@@ -3,19 +3,20 @@ import styled from 'styled-components';
 import logo from '../../../assets/logo.svg';
 import iconMypage from '../../../assets/icon-mypage.svg';
 
-const MOBILE_WIDTH = 375;
-
 const HeaderContainer = styled.header`
-  width: 100%;
-  max-width: ${MOBILE_WIDTH}px;
+  width: 100vw;
   height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 16px;
   background: #fff;
-  box-sizing: border-box;
   border-bottom: 1px solid #f0f0f0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
 `;
 
 const LogoButton = styled.button`

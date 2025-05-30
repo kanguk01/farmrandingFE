@@ -11,7 +11,7 @@ const CardContainer = styled.div`
   align-items: center;
   gap: 10px;
   padding: 4px 12px;
-  width: 360px;
+  width: 100%;
   height: 56px;
   background: #ffffff;
   border-radius: 8px;
@@ -47,10 +47,11 @@ const IconImage = styled.img`
 `;
 
 const TextContainer = styled.div`
-  width: 251px;
+  flex: 1;
   height: auto;
   display: flex;
   flex-direction: column;
+  min-width: 0;
 `;
 
 const MainText = styled.div`

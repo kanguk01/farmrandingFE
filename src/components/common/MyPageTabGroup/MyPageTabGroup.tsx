@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import MyPageTab, { MyPageTabOption } from '../MyPageTab/MyPageTab';
+import MyPageTab, { type MyPageTabOption } from '../MyPageTab/MyPageTab';
 
 const TabGroupContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: fit-content;
+  width: 100%;
+  max-width: 370px;
   height: 70px;
+  box-sizing: border-box;
 `;
 
 interface MyPageTabGroupProps {
