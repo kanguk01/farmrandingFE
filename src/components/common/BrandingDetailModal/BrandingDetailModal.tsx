@@ -88,7 +88,6 @@ const ModalHeader = styled.div`
   justify-content: space-between;
   padding: 0 20px;
   border-bottom: 1px solid rgba(31, 65, 187, 0.1);
-  position: relative;
 `;
 
 const ModalTitle = styled.h2`
@@ -98,17 +97,6 @@ const ModalTitle = styled.h2`
   line-height: 1.2;
   color: #1F41BB;
   margin: 0;
-`;
-
-const CreatedDate = styled.div`
-  position: absolute;
-  top: 12px;
-  right: 60px;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.2;
-  color: #9CA3AF;
 `;
 
 const CloseButton = styled.button`
@@ -151,8 +139,26 @@ const ModalContent = styled.div`
 const BrandingHeader = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
   margin-bottom: 16px;
+`;
+
+const BrandingTitleSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+`;
+
+const BrandingDateSection = styled.div`
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.2;
+  color: #9CA3AF;
+  padding: 4px 8px;
+  background: rgba(31, 65, 187, 0.05);
+  border-radius: 6px;
+  border: 1px solid rgba(31, 65, 187, 0.1);
 `;
 
 const BrandingIcon = styled.img`
@@ -332,7 +338,6 @@ const BrandingDetailModal: React.FC<BrandingDetailModalProps> = ({
       <ModalContainer isVisible={isVisible} isClosing={isClosing}>
         <ModalHeader>
           <ModalTitle>브랜딩 상세</ModalTitle>
-          <CreatedDate>{brandingHistory.createdAt}</CreatedDate>
           <CloseButton onClick={handleClose} aria-label="닫기">
             <CloseIcon src={iconClose} alt="닫기" />
           </CloseButton>
@@ -341,8 +346,11 @@ const BrandingDetailModal: React.FC<BrandingDetailModalProps> = ({
         <ModalContent>
           <BrandSection>
             <BrandingHeader>
-              <BrandingIcon src={iconBrush} alt="브랜딩" />
-              <BrandingLabel>브랜드 정보</BrandingLabel>
+              <BrandingTitleSection>
+                <BrandingIcon src={iconBrush} alt="브랜딩" />
+                <BrandingLabel>브랜드 정보</BrandingLabel>
+              </BrandingTitleSection>
+              <BrandingDateSection>{brandingHistory.createdAt}</BrandingDateSection>
             </BrandingHeader>
 
             <ImageSection>

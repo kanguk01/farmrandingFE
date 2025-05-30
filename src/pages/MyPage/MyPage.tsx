@@ -9,6 +9,7 @@ import BrandingDetailModal from '../../components/common/BrandingDetailModal/Bra
 import PriceQuoteCard from '../../components/common/PriceQuoteCard/PriceQuoteCard';
 import PriceQuoteDetailModal from '../../components/common/PriceQuoteDetailModal/PriceQuoteDetailModal';
 import PersonalInfo, { type PersonalInfoData } from '../../components/common/PersonalInfo/PersonalInfo';
+import MembershipList, { type MembershipPlan } from '../../components/common/MembershipList/MembershipList';
 import type { PriceQuoteHistory } from '../../types/priceHistory';
 import iconSort from '../../assets/icon-sort.svg';
 import iconBrush from '../../assets/icon-brush.svg';
@@ -282,6 +283,30 @@ const EmptyDescription = styled.div`
   color: #9CA3AF;
 `;
 
+const MembershipContainer = styled.div`
+  width: 100%;
+  padding: 20px;
+  background: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  overflow-y: auto;
+  flex: 1;
+  
+  /* 마이페이지 멤버십 탭에 맞는 스타일링 */
+  .membership-list {
+    width: 100%;
+    max-width: 100%;
+    
+    /* MembershipList 내부 스타일 조정 */
+    > div {
+      padding: 0;
+      max-width: 100%;
+    }
+  }
+`;
+
 // Mock 데이터 타입 정의
 interface BrandingHistory {
   id: string;
@@ -392,7 +417,7 @@ const MyPage: React.FC = () => {
       description: '한 입에 쏙, 귀여움이 톡!',
       story: '아이들이 좋아하는 작고 귀여운 사과를 만들고 싶었어요. 기존 사과보다 크기는 작지만, 당도는 더 높고 아삭한 식감이 매력적입니다.\n\n매일 새벽 5시에 일어나 과수원을 돌보며, 하나하나 정성스럽게 키운 사과들입니다. 농약 사용을 최소화하고, 자연 친화적인 방법으로 재배했습니다.\n\n\'뽀사과\'라는 이름은 손녀가 지어줬는데, 정말 사과처럼 볼이 뽀얗고 귀엽다고 해서 붙인 이름이에요.',
       imageUrl: 'https://placehold.co/72x72/ff6b6b/ffffff?text=🍎',
-      createdAt: '2025.05.15'
+      createdAt: '2024.12.15'
     },
     {
       id: '2',
@@ -400,7 +425,7 @@ const MyPage: React.FC = () => {
       description: '자연이 키운 진심의 맛',
       story: '고향 강원도의 깨끗한 고랭지에서 자란 감자입니다. 일교차가 큰 환경에서 자란 덕분에 당도가 높고 포슬포슬한 식감을 자랑해요.\n\n3대째 이어온 감자 농사의 노하우를 바탕으로, 전통 농법과 현대 기술을 조화롭게 접목했습니다. 화학비료 대신 퇴비를 사용하고, 토양의 건강을 최우선으로 생각합니다.\n\n딸 하은이의 이름을 따서 \'하은 감자\'라고 명명했습니다. 하은이가 농업에 관심을 갖고 함께 일할 수 있기를 바라는 마음을 담았어요.',
       imageUrl: 'https://placehold.co/72x72/8B4513/ffffff?text=🥔',
-      createdAt: '2025.05.15'
+      createdAt: '2024.12.14'
     },
     {
       id: '3',
@@ -408,7 +433,7 @@ const MyPage: React.FC = () => {
       description: '노지에서 자란 고품질 오이고추, 바로 산지에서 보내드립니다.',
       story: '충청남도 논산의 비옥한 땅에서 자란 오이고추입니다. 조부모님 대부터 이어온 씨앗을 사용해 재배하는 토종 오이고추로, 시중에서 찾기 어려운 진짜 맛을 자랑합니다.\n\n농약을 최소한으로 사용하고, 천적 곤충을 활용한 친환경 농법으로 재배합니다. 매일 새벽 이슬을 맞으며 자란 오이고추는 아삭하고 신선함이 오래 지속됩니다.\n\n싱싱하고 초록빛이 아름다워 \'싱싱초록\'이라는 브랜드명을 지었습니다. 소비자들에게 건강하고 신선한 채소를 전달하고 싶은 마음을 담았어요.',
       imageUrl: 'https://placehold.co/72x72/32CD32/ffffff?text=🌶️',
-      createdAt: '2025.05.14'
+      createdAt: '2024.12.10'
     },
     {
       id: '4',
@@ -416,8 +441,54 @@ const MyPage: React.FC = () => {
       description: '"햇살과 정성을 가득 담은 산지직송 대추토마토, 토담토가 전하는 자연 그대로의 달콤함."',
       story: '전라남도 고흥의 따뜻한 햇살 아래에서 자란 대추토마토입니다. 바닷바람과 충분한 일조량, 그리고 농부의 정성이 만들어낸 최고의 토마토예요.\n\n당도 12브릭스 이상의 고당도 토마토로, 과일처럼 달콤합니다. 하우스가 아닌 노지에서 자연스럽게 익힌 토마토라 영양가도 풍부하고 맛도 진합니다.\n\n\'토마토에 정성을 담다\'는 의미로 \'토담토\'라고 이름 지었습니다. 소비자 분들이 한 입 베어물면 농부의 진심을 느끼실 수 있을 거라 확신합니다.',
       imageUrl: 'https://placehold.co/72x72/FF6347/ffffff?text=🍅',
-      createdAt: '2025.05.14'
+      createdAt: '2024.11.28'
     }
+  ];
+
+  // 멤버십 플랜 데이터
+  const membershipPlans: MembershipPlan[] = [
+    {
+      id: 'free',
+      iconType: 'shield',
+      title: '일반 회원',
+      price: '₩0 /월',
+      description: '브랜딩과 가격 제안, 무료로 시작해보세요. 간단히 체험하고 싶은 농장주님께 추천드려요.',
+      features: [
+        '브랜딩: 최초 5회',
+        '가격 제안: 최초 5회',
+        '판매글 생성: 제공되지 않음',
+        '기본 고객 지원',
+      ],
+    },
+    {
+      id: 'premium',
+      iconType: 'rocket',
+      title: '프리미엄',
+      price: '₩4,900 /월',
+      description: '브랜딩과 가격 제안을 무제한으로. 꾸준히 사용하는 농장주님께 꼭 맞는 요금제입니다.',
+      features: [
+        '브랜딩: 무제한',
+        '가격 제안: 무제한',
+        '판매글 생성: 제공되지 않음',
+        '우선 고객 지원',
+      ],
+      isRecommended: true,
+    },
+    {
+      id: 'premium-plus',
+      iconType: 'diamond',
+      title: '프리미엄 플러스',
+      price: '₩8,900 /월',
+      description: '홍보 문구까지 자동으로 완성해드릴게요. 마케팅까지 맡기고 싶은 농장주님께 추천합니다.',
+      features: [
+        '브랜딩: 무제한',
+        '가격 제안: 무제한',
+        '판매글 생성: 무제한',
+        '감성형 / 실용형 / 쇼핑몰형 등 다양한 문체 지원',
+        '24/7 전용 고객 지원',
+      ],
+      isPremium: true,
+    },
   ];
 
   // PersonalInfo 데이터
@@ -544,6 +615,12 @@ const MyPage: React.FC = () => {
     setSelectedPriceHistory(null);
   };
 
+  const handleSelectPlan = (planId: string) => {
+    console.log(`플랜 선택됨: ${planId}`);
+    // TODO: 실제 플랜 구독 로직 구현
+    alert(`${planId} 플랜이 선택되었습니다!`);
+  };
+
   const renderBrandingContent = () => {
     const groupedHistory = getGroupedBrandingHistory();
     const dateKeys = Object.keys(groupedHistory);
@@ -645,16 +722,13 @@ const MyPage: React.FC = () => {
         return renderPricingContent();
       case 'membership':
         return (
-          <EmptyState>
-            <EmptyIconContainer>
-              <EmptyIcon src={iconDiamond} alt="멤버십" />
-            </EmptyIconContainer>
-            <EmptyTitle>멤버십 정보가 없습니다</EmptyTitle>
-            <EmptyDescription>
-              프리미엄 멤버십으로 업그레이드하면<br />
-              더 많은 기능을 이용할 수 있습니다.
-            </EmptyDescription>
-          </EmptyState>
+          <MembershipContainer>
+            <MembershipList
+              plans={membershipPlans}
+              onSelectPlan={handleSelectPlan}
+              className="membership-list"
+            />
+          </MembershipContainer>
         );
       default:
         return null;
