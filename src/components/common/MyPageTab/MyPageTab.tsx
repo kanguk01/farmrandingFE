@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TabButton = styled.button<{ selected: boolean }>`
-  width: 134px;
+  width: 120px;
   height: 70px;
   background: ${props => props.selected ? '#FFFFFF' : '#F4FAFF'};
   border: ${props => props.selected ? '0 !important' : '1px solid #D9D9D9'};
@@ -13,6 +13,8 @@ const TabButton = styled.button<{ selected: boolean }>`
   cursor: pointer;
   transition: all 0.2s ease;
   box-sizing: border-box;
+  flex: 1;
+  min-width: 100px;
 
   &:hover {
     background: #FFFFFF;
@@ -32,12 +34,13 @@ const TabButton = styled.button<{ selected: boolean }>`
 const TabText = styled.span<{ selected: boolean }>`
   font-family: 'Jalnan 2', sans-serif;
   font-weight: 400;
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.18;
-  letter-spacing: -3.57%;
+  letter-spacing: -2%;
   color: ${props => props.selected ? '#1F41BB' : '#000000'};
   text-align: center;
   transition: color 0.2s ease;
+  white-space: nowrap;
 
   ${TabButton}:hover & {
     color: #1F41BB;

@@ -8,12 +8,25 @@ const BrandResultCard = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 48px 21px;
-  width: 358px;
+  padding: 40px 28px;
+  width: 100%;
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  box-shadow: 0px 4px 20px 0px rgba(31, 65, 187, 0.08);
+  border: 1px solid rgba(31, 65, 187, 0.08);
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #1F41BB 0%, #4F46E5 100%);
+  }
 `;
 
 const ContentFrame = styled.div`
@@ -21,15 +34,15 @@ const ContentFrame = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 25px;
-  width: 320px;
+  gap: 32px;
+  width: 100%;
 `;
 
 const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-self: stretch;
-  gap: 4px;
+  gap: 8px;
   width: 100%;
 `;
 
@@ -37,33 +50,37 @@ const LabelContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-self: stretch;
-  gap: 4px;
+  gap: 8px;
   width: 100%;
+  align-items: center;
 `;
 
 const FieldLabel = styled.span`
   font-family: 'Jalnan 2', sans-serif;
   font-weight: 400;
-  font-size: 16px;
-  line-height: 1.18;
+  font-size: 15px;
+  line-height: 1.4;
   text-align: left;
-  color: #000000;
+  color: #1a1a1a;
   flex: 1;
 `;
 
 const CopyButton = styled.button`
-  width: 16px;
-  height: 16px;
-  background: transparent;
+  width: 20px;
+  height: 20px;
+  background: rgba(31, 65, 187, 0.1);
   border: none;
+  border-radius: 6px;
   padding: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
 
   &:hover {
-    opacity: 0.7;
+    background: rgba(31, 65, 187, 0.2);
+    transform: scale(1.05);
   }
 
   &:active {
@@ -72,62 +89,82 @@ const CopyButton = styled.button`
 `;
 
 const CopyIcon = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 12px;
+  height: 12px;
+  opacity: 0.7;
 `;
 
 const InputField = styled.div`
   display: flex;
   align-items: center;
-  padding: 0px 7px;
+  padding: 12px 16px;
   width: 100%;
-  height: 33px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.15);
+  min-height: 44px;
+  background: #fafbff;
+  border-radius: 12px;
+  border: 1px solid rgba(31, 65, 187, 0.1);
   box-sizing: border-box;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: rgba(31, 65, 187, 0.2);
+    background: #f7f9ff;
+  }
 `;
 
 const InputText = styled.span`
   font-family: 'Inter', sans-serif;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 1.21;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
   text-align: left;
-  color: #9c9c9c;
+  color: #2d2d2d;
   width: 100%;
+  word-break: keep-all;
 `;
 
 const ImageContainer = styled.div`
   position: relative;
   width: 200px;
   height: 200px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0px 4px 16px 0px rgba(31, 65, 187, 0.12);
 `;
 
 const BrandImage = styled.img`
   width: 100%;
   height: 100%;
-  background: #a4a4a4;
-  border-radius: 0;
+  background: #f0f4ff;
   object-fit: cover;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 `;
 
 const DownloadButton = styled.button`
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 18px;
-  height: 18px;
-  background: transparent;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
   border: none;
+  border-radius: 8px;
   padding: 0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    opacity: 0.7;
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.05);
   }
 
   &:active {
@@ -136,37 +173,42 @@ const DownloadButton = styled.button`
 `;
 
 const DownloadIcon = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 16px;
+  height: 16px;
 `;
 
 const StoryField = styled.div<{ isExpanded: boolean; isPremium: boolean }>`
   display: flex;
   align-items: flex-start;
-  padding: 0px 7px;
+  padding: 16px;
   width: 100%;
-  height: ${props => props.isExpanded ? 'auto' : '45px'};
-  min-height: 45px;
-  background: #ffffff;
-  border-radius: ${props => props.isExpanded || props.isPremium ? '8px' : '8px 8px 0px 0px'};
-  box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.15);
+  min-height: ${props => props.isExpanded ? 'auto' : '60px'};
+  background: #fafbff;
+  border-radius: ${props => props.isExpanded || props.isPremium ? '12px' : '12px 12px 0px 0px'};
+  border: 1px solid rgba(31, 65, 187, 0.1);
   box-sizing: border-box;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: rgba(31, 65, 187, 0.2);
+    background: #f7f9ff;
+  }
 `;
 
 const StoryText = styled.span<{ isExpanded: boolean }>`
   font-family: 'Inter', sans-serif;
   font-weight: 400;
-  font-size: 12px;
-  line-height: 1.21;
+  font-size: 13px;
+  line-height: 1.6;
   text-align: left;
-  color: #9c9c9c;
+  color: #4a4a4a;
   width: 100%;
-  padding-top: 6px;
   display: ${props => props.isExpanded ? 'block' : '-webkit-box'};
   -webkit-line-clamp: ${props => props.isExpanded ? 'none' : '2'};
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  word-break: keep-all;
 `;
 
 const StoryContainer = styled.div`

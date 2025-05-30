@@ -3,13 +3,11 @@ import styled from 'styled-components';
 import iconPrice from '../../../assets/icon-price.svg';
 import iconTrash from '../../../assets/icon-trash.svg';
 
-const CARD_WIDTH = 360;
-
 const Container = styled.div<{ hasDate: boolean }>`
   display: flex;
   flex-direction: column;
   gap: ${props => props.hasDate ? '17px' : '0px'};
-  width: ${CARD_WIDTH}px;
+  width: 100%;
 `;
 
 const DateSection = styled.div`
@@ -38,7 +36,7 @@ const DateLine = styled.div`
   position: absolute;
   left: 0;
   top: 16px;
-  width: 360px;
+  width: 100%;
   height: 1px;
   background: #9C9C9C;
 `;
