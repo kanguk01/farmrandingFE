@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
 import BrandResult from '../../components/common/BrandResult/BrandResult';
 import KeywordTag from '../../components/common/KeywordTag/KeywordTag';
-import iconCancel from '../../assets/icons/icon-cancel.svg';
+import iconCancel from '../../assets/icon-cancel.svg';
 import { BrandResultData } from '../../components/common/BrandResult/BrandResult';
 
 // 간단한 애니메이션만 유지

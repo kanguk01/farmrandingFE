@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import KeywordTag from '../../components/common/KeywordTag/KeywordTag';
-import iconCancel from '../../assets/icons/icon-cancel.svg';
+import iconCancel from '../../assets/icon-cancel.svg';
 import { LOGO_IMAGE_KEYWORDS } from '../../constants/keywords';
 
 const PageContainer = styled.div`

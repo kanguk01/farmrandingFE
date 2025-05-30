@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
-import iconCancel from '../../assets/icons/icon-cancel.svg';
+import iconCancel from '../../assets/icon-cancel.svg';
 
 // 애니메이션 정의
 const fadeIn = keyframes`

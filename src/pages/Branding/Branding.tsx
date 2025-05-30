@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import InputField from '../../components/common/InputField/InputField';
 import Button from '../../components/common/Button/Button';
 import GradeSelector from '../../components/common/GradeSelector/GradeSelector';
-import iconCancel from '../../assets/icons/icon-cancel.svg';
+import iconCancel from '../../assets/icon-cancel.svg';
 import iconGrade from '../../assets/icon-grade.svg';
 
 const PageContainer = styled.div`

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import InputField from '../../components/common/InputField/InputField';
 import Button from '../../components/common/Button/Button';
-import iconCancel from '../../assets/icons/icon-cancel.svg';
+import iconCancel from '../../assets/icon-cancel.svg';
 
 const PageContainer = styled.div`
   width: 100%;

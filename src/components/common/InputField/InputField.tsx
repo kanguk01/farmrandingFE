@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import iconCopy from '../../../assets/icon-copy.svg';
 import iconCalendar from '../../../assets/icon-calendar.svg';
-import iconGrade from '../../../assets/icons/icon-grade.svg';
+import iconGrade from '../../../assets/icon-grade.svg';
 
 const INPUT_FIELD_WIDTH = 320;
 const INPUT_FIELD_HEIGHT_NORMAL = 33;
