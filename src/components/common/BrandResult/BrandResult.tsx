@@ -263,10 +263,9 @@ const BrandResult: React.FC<BrandResultProps> = ({
               </StoryText>
             </StoryField>
             {showMoreButton && (
-              <MoreButton 
-                text="프리미엄 구독하고 더 보기"
-                onClick={handleMoreClick}
-              />
+              <MoreButton onClick={handleMoreClick}>
+                프리미엄 구독하고 더 보기
+              </MoreButton>
             )}
           </StoryContainer>
         </FieldContainer>
