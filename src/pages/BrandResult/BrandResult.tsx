@@ -289,7 +289,7 @@ const BrandResultPage: React.FC = () => {
     console.log('선택된 키워드:', receivedKeywords);
     
     alert('브랜드가 성공적으로 생성되었습니다!');
-    navigate('/');
+    navigate('/mypage');
   };
 
   const handleCopy = (field: string, value: string) => {

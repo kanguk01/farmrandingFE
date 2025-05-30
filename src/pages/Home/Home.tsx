@@ -56,7 +56,7 @@ const Home: React.FC<HomeProps> = ({ className }) => {
 
   const handleMypageClick = () => {
     console.log('마이페이지 클릭');
-    // TODO: 마이페이지로 라우팅
+    navigate('/mypage');
   };
 
   return (

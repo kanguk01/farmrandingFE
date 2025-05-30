@@ -9,6 +9,7 @@ import CropAppealKeywords from './pages/CropAppealKeywords';
 import LogoImageKeywords from './pages/LogoImageKeywords';
 import BrandNameGeneration from './pages/BrandNameGeneration';
 import BrandResult from './pages/BrandResult';
+import MyPage from './pages/MyPage';
 import './App.css';
 
 const AppContainer = styled.div`
@@ -53,6 +54,7 @@ function App() {
             <Route path="/logo-image-keywords" element={<LogoImageKeywords />} />
             <Route path="/brand-name-generation" element={<BrandNameGeneration />} />
             <Route path="/brand-result" element={<BrandResult />} />
+            <Route path="/mypage" element={<MyPage />} />
             {/* 추가 페이지 라우트는 여기에 추가 */}
           </Routes>
         </ContentWrapper>
