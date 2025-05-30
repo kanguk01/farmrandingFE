@@ -17,7 +17,7 @@ type Story = StoryObj<typeof BrandingCard>;
 
 export const Apple: Story = {
   args: {
-    title: '뽀하은 사과',
+    title: '사과',
     description: '한 입에 쏙, 귀여움이 톡!',
     imageUrl: 'https://placehold.co/72x72/ff6b6b/ffffff?text=🍎',
     onDelete: () => alert('사과 카드가 삭제되었습니다!'),
@@ -26,7 +26,7 @@ export const Apple: Story = {
 
 export const Potato: Story = {
   args: {
-    title: '하은 감자',
+    title: '감자',
     description: '자연이 키운 진심의 맛',
     imageUrl: 'https://placehold.co/72x72/8b4513/ffffff?text=🥔',
     onDelete: () => alert('감자 카드가 삭제되었습니다!'),
