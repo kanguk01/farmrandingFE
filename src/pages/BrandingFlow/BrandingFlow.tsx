@@ -92,14 +92,6 @@ const StepText = styled.span`
   font-weight: 400 !important;
   font-size: 14px !important;
   color: #666 !important;
-  letter-spacing: -0.02em !important;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
-
-  * {
-    font-family: 'Jalnan 2', sans-serif !important;
-  }
 `;
 
 const StepNumber = styled.span`
@@ -107,14 +99,6 @@ const StepNumber = styled.span`
   font-weight: 400 !important;
   font-size: 14px !important;
   color: #1F41BB !important;
-  letter-spacing: -0.02em !important;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
-
-  * {
-    font-family: 'Jalnan 2', sans-serif !important;
-  }
 `;
 
 const StepContainer = styled.div<{ $direction: 'left' | 'right' }>`
@@ -387,10 +371,25 @@ const BrandingFlow: React.FC = () => {
           <ProgressFill $progress={getProgress()} />
         </ProgressBar>
 
-        <StepIndicator className="jalnan-force">
-          <StepText data-font="jalnan">단계</StepText>
-          <StepNumber data-font="jalnan">{currentStep + 1}</StepNumber>
-          <StepText data-font="jalnan">/ 7</StepText>
+        <StepIndicator>
+          <StepText 
+            className="step-text" 
+            style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+          >
+            단계
+          </StepText>
+          <StepNumber 
+            className="step-number"
+            style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+          >
+            {currentStep + 1}
+          </StepNumber>
+          <StepText 
+            className="step-text"
+            style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+          >
+            / 7
+          </StepText>
         </StepIndicator>
 
         <StepContainer $direction={animationDirection}>
@@ -401,7 +400,11 @@ const BrandingFlow: React.FC = () => {
         {currentStep !== BrandingStep.RESULT && (
           <NavigationContainer className="jalnan-force">
             {currentStep > BrandingStep.BASIC_INFO && (
-              <PrevButton onClick={handlePrev} data-font="jalnan">
+              <PrevButton 
+                onClick={handlePrev} 
+                className="nav-button"
+                style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+              >
                 이전
               </PrevButton>
             )}
@@ -410,7 +413,8 @@ const BrandingFlow: React.FC = () => {
               <NextButton 
                 $disabled={!isCurrentStepValid}
                 onClick={handleNext}
-                data-font="jalnan"
+                className="nav-button"
+                style={{ fontFamily: "'Jalnan 2', sans-serif" }}
               >
                 {currentStep === BrandingStep.BRAND_NAME_GENERATION ? '완료' : '다음'}
               </NextButton>
