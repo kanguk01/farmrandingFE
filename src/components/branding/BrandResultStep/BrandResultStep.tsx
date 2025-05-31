@@ -222,7 +222,7 @@ const BrandResultStep: React.FC<BrandResultStepProps> = ({
       </BrandResultContainer>
 
       <KeywordSection>
-        <KeywordSectionTitle>선택하신 키워드</KeywordSectionTitle>
+        <KeywordSectionTitle>선택한 키워드</KeywordSectionTitle>
         <KeywordContainer>
           <KeywordGrid $showAll={showAllKeywords}>
             {visibleKeywords.map((keyword, index) => (
