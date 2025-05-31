@@ -1,11 +1,34 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import InputField from '../../components/common/InputField/InputField';
 import Button from '../../components/common/Button/Button';
 import GradeSelector from '../../components/common/GradeSelector/GradeSelector';
 import iconCancel from '../../assets/icon-cancel.svg';
 import iconGrade from '../../assets/icon-grade.svg';
+
+// 애니메이션
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const slideInUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const PageContainer = styled.div`
   width: 100%;
@@ -71,6 +94,7 @@ const MainContent = styled.div`
   gap: 48px;
   width: 100%;
   max-width: 320px;
+  animation: ${fadeIn} 0.8s ease-out;
 `;
 
 const Title = styled.h1`
@@ -90,6 +114,7 @@ const FormContainer = styled.div`
   flex-direction: column;
   gap: 25px;
   width: 100%;
+  animation: ${slideInUp} 0.8s ease-out 0.2s both;
 `;
 
 const GradeContainer = styled.div`
@@ -149,6 +174,7 @@ const ButtonContainer = styled.div`
   width: 100%;
   max-width: 300px;
   margin-top: 32px;
+  animation: ${slideInUp} 0.8s ease-out 0.4s both;
 `;
 
 interface BrandingFormData {

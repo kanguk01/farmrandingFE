@@ -492,8 +492,8 @@ const MyPage: React.FC = () => {
 
   // PersonalInfo 데이터
   const personalData: PersonalInfoData = {
-    name: "기요미",
-    farmName: "기요미 하은팜",
+    name: "윤하은",
+    farmName: " 하은팜",
     location: "○○도 □□시 △△동"
   };
 
