@@ -88,17 +88,17 @@ const StepIndicator = styled.div`
 `;
 
 const StepText = styled.span`
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  color: #666;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #666 !important;
 `;
 
 const StepNumber = styled.span`
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  color: #1F41BB;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #1F41BB !important;
 `;
 
 const StepContainer = styled.div<{ $direction: 'left' | 'right' }>`
@@ -122,9 +122,9 @@ const PrevButton = styled.button`
   border: none;
   border-radius: 8px;
   color: white;
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
   cursor: pointer;
   transition: all 0.2s ease;
 
@@ -145,9 +145,9 @@ const NextButton = styled.button<{ $disabled: boolean }>`
   border: none;
   border-radius: 8px;
   color: white;
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
   cursor: ${props => props.$disabled ? 'not-allowed' : 'pointer'};
   transition: all 0.2s ease;
 
@@ -356,9 +356,24 @@ const BrandingFlow: React.FC = () => {
         </ProgressBar>
 
         <StepIndicator>
-          <StepText>단계</StepText>
-          <StepNumber>{currentStep + 1}</StepNumber>
-          <StepText>/ 7</StepText>
+          <StepText 
+            className="step-text" 
+            style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+          >
+            단계
+          </StepText>
+          <StepNumber 
+            className="step-number"
+            style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+          >
+            {currentStep + 1}
+          </StepNumber>
+          <StepText 
+            className="step-text"
+            style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+          >
+            / 7
+          </StepText>
         </StepIndicator>
 
         <StepContainer $direction={animationDirection}>
@@ -369,7 +384,11 @@ const BrandingFlow: React.FC = () => {
         {currentStep !== BrandingStep.RESULT && (
           <NavigationContainer>
             {currentStep > BrandingStep.BASIC_INFO && (
-              <PrevButton onClick={handlePrev}>
+              <PrevButton 
+                onClick={handlePrev} 
+                className="nav-button"
+                style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+              >
                 이전
               </PrevButton>
             )}
@@ -378,6 +397,8 @@ const BrandingFlow: React.FC = () => {
               <NextButton 
                 $disabled={!isCurrentStepValid}
                 onClick={handleNext}
+                className="nav-button"
+                style={{ fontFamily: "'Jalnan 2', sans-serif" }}
               >
                 {currentStep === BrandingStep.BRAND_NAME_GENERATION ? '완료' : '다음'}
               </NextButton>
