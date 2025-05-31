@@ -1,8 +1,8 @@
 /* 폰트 파일 직접 로드 */
 @font-face {
   font-family: 'Jalnan 2';
-  src: url('./font/Jalnan2.otf') format('opentype'),
-       url('./font/Jalnan2TTF.ttf') format('truetype');
+  src: url('/src/font/Jalnan2.otf') format('opentype'),
+       url('/src/font/Jalnan2TTF.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
