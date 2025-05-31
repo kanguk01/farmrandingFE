@@ -59,9 +59,8 @@ const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 16px 30px 16px;
+  padding: 51px 16px 30px 16px;
   flex: 1;
-  justify-content: center;
   max-width: 100%;
 `;
 
