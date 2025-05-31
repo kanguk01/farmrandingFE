@@ -10,11 +10,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
     <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
     
-    <!-- 핵심 폰트 preload - 여러 백업 URL -->
+    <!-- 핵심 폰트 preload - 모든 가능한 백업 URL -->
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff" as="font" type="font/woff" crossorigin>
     <link rel="preload" href="https://fonts.gstatic.com/ea/jalnan/v1/JalnanOTF.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="https://fonts.gstatic.com/ea/jalnan/v1/JalnanOTF.woff" as="font" type="font/woff" crossorigin>
     
     <!-- Google Fonts preload - 백업 폰트도 빠르게 로딩 -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
@@ -22,20 +26,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- 폰트 로딩 최적화 -->
+    <!-- 강력한 폰트 로딩 최적화 -->
     <style>
       /* Critical CSS - 폰트 로딩 전 기본 설정 */
       :root {
-        --font-jalnan: 'Jalnan', 'JalnanAlt', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
-        --font-weight-bold: 700;
+        --font-jalnan: 'Jalnan', 'JalnanForce', 'JalnanGoogleForce', 'JalnanAPI', 'JalnanAlt', 'JalnanLatest', 'yg-jalnan', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+        --font-jalnan-loaded: var(--font-jalnan);
+        --font-weight-bold: 800;
       }
-      html, body {
-        font-family: var(--font-jalnan) !important;
+      
+      /* 최우선 폰트 적용 */
+      html, body, *, *::before, *::after {
+        font-family: var(--font-jalnan-loaded) !important;
         font-weight: var(--font-weight-bold) !important;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
+      
+      /* 즉시 적용되는 Jalnan 스타일 폰트 */
+      @font-face {
+        font-family: 'JalnanImmediate';
+        src: url('data:font/woff2;base64,') format('woff2');
+        font-weight: normal;
+        font-style: normal;
+        font-display: block;
+      }
+      
+      /* 로딩 애니메이션 */
+      @keyframes fontPulse {
+        0%, 100% { font-weight: 700; }
+        50% { font-weight: 900; }
+      }
+      
+      .font-pulse {
+        animation: fontPulse 1s ease-in-out infinite;
+      }
     </style>
+    
+    <!-- 폰트 강제 로딩 스크립트 -->
+    <script>
+      // 폰트 강제 로딩 시도
+      (function() {
+        const fontUrls = [
+          'https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2',
+          'https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2',
+          'https://fonts.gstatic.com/ea/jalnan/v1/JalnanOTF.woff2'
+        ];
+        
+        fontUrls.forEach((url, index) => {
+          const fontFace = new FontFace(`JalnanPreload${index}`, `url(${url})`);
+          fontFace.load().then(() => {
+            document.fonts.add(fontFace);
+            console.log(`✅ 폰트 프리로드 성공: ${index}`);
+          }).catch(err => {
+            console.warn(`⚠️ 폰트 프리로드 실패: ${index}`, err);
+          });
+        });
+      })();
+    </script>
     
     <title>팜랜딩</title>
   </head>
