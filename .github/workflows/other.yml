@@ -1,4 +1,4 @@
-name: Sync from upstream
+name: 특정 레포 끌어오기
 
 on:
   workflow_dispatch:  # 수동 실행 버튼 추가
@@ -25,10 +25,10 @@ jobs:
       - name: Fetch upstream
         run: git fetch upstream
 
-      - name: Merge upstream/5-feature-fixbug → origin/main
+      - name: Merge upstream/5-feature-fixbug into origin/main
         run: |
           git checkout main
-          git merge upstream/main --allow-unrelated-histories --no-edit
+          git merge upstream/5-feature-fixbug --allow-unrelated-histories --no-edit
 
       - name: Push to your fork
         env:
