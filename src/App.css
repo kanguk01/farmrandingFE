@@ -1,3 +1,13 @@
+/* 폰트 파일 직접 로드 */
+@font-face {
+  font-family: 'Jalnan 2';
+  src: url('./font/Jalnan2.otf') format('opentype'),
+       url('./font/Jalnan2TTF.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* 전체 화면 완벽 채움을 위한 CSS 리셋 */
 * {
   margin: 0;
@@ -26,15 +36,9 @@ html, body {
   --font-jalnan: 'Jalnan 2', sans-serif;
 }
 
-/* Jalnan 2 폰트 강제 적용 */
-.jalnan-force,
-.jalnan-force *,
-[data-font="jalnan"],
-[data-font="jalnan"] * {
+/* 모든 요소에 강제 적용 */
+* {
   font-family: 'Jalnan 2', sans-serif !important;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
 }
 
 /* 브랜딩 플로우 특정 요소들 */

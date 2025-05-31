@@ -49,31 +49,6 @@ const Title = styled.h1<{ $isVisible: boolean }>`
   white-space: pre-line;
   word-wrap: break-word;
   opacity: ${props => props.$isVisible ? 1 : 0};
-  transition: opacity 0.5s ease;
-  text-rendering: optimizeLegibility !important;
-  -webkit-font-smoothing: antialiased !important;
-  -moz-osx-font-smoothing: grayscale !important;
-
-  * {
-    font-family: 'Jalnan 2', sans-serif !important;
-  }
-
-  &::before,
-  &::after {
-    font-family: 'Jalnan 2', sans-serif !important;
-  }
-`;
-
-const StatusText = styled.h2<{ $isVisible: boolean }>`
-  font-family: 'Jalnan 2', sans-serif !important;
-  font-weight: 400 !important;
-  font-size: 20px !important;
-  line-height: 1.67 !important;
-  letter-spacing: 4.17% !important;
-  text-align: center !important;
-  color: #000000 !important;
-  margin: 0 0 24px 0 !important;
-  opacity: ${props => props.$isVisible ? 1 : 0};
   animation: ${props => props.$isVisible ? fadeIn : 'none'} 0.8s ease-out;
   transition: opacity 0.5s ease;
   text-rendering: optimizeLegibility !important;
