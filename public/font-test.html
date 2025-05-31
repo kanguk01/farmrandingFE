@@ -3,36 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>폰트 테스트</title>
+    <title>폰트 테스트 - 팜랜딩</title>
+    
+    <!-- DNS preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fastly.jsdelivr.net" crossorigin>
+    
+    <!-- 폰트 preload -->
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <style>
-        @import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff') format('woff');
-        
+        /* Jalnan 폰트 정의 */
         @font-face {
             font-family: 'Jalnan 2';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2') format('woff2'),
+                 url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2') format('woff2'),
                  url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff') format('woff');
-            font-weight: normal;
+            font-weight: 400;
             font-style: normal;
             font-display: swap;
+        }
+        
+        /* 기본 설정 */
+        * {
+            font-family: 'Jalnan 2', 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
         body {
             margin: 20px;
             background: #F4FAFF;
             line-height: 1.6;
+            font-family: 'Jalnan 2', 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
         }
         
         .jalnan-test {
-            font-family: 'Jalnan 2', 'Jalnan', 'Malgun Gothic', '맑은 고딕', sans-serif;
+            font-family: 'Jalnan 2', 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
             font-size: 24px;
             color: #1F41BB;
             margin: 20px 0;
+            font-weight: 400;
         }
         
         .inter-test {
@@ -43,37 +57,85 @@
         }
         
         .fallback-test {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
             font-size: 16px;
             color: #666;
             margin: 20px 0;
         }
+        
+        .status {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .success { border-left: 4px solid #10B981; }
+        .error { border-left: 4px solid #EF4444; }
+        
+        .service-card-test {
+            font-family: 'Jalnan 2', sans-serif;
+            font-size: 16px;
+            color: #1F41BB;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
-    <h1 class="jalnan-test">팜랜딩 폰트 테스트</h1>
+    <h1 class="jalnan-test">팜랜딩 폰트 테스트 🚀</h1>
+    
+    <div class="service-card-test">
+        <div style="font-size: 10px; margin-bottom: 2px; color: #1F41BB;">마케팅은 저희가 할게요.</div>
+        <div style="font-size: 16px;">내 작물 브랜딩</div>
+    </div>
+    
     <p class="jalnan-test">Jalnan 2 폰트: 브랜딩이 만들어졌어요!</p>
     <p class="inter-test">Inter 폰트: This is a test for Inter font.</p>
     <p class="fallback-test">Fallback 폰트: 시스템 기본 폰트입니다.</p>
     
+    <div id="font-status"></div>
+    
     <script>
         // 폰트 로딩 상태 확인
-        document.fonts.ready.then(() => {
-            console.log('모든 폰트가 로드되었습니다.');
-            
-            // Jalnan 2 폰트 로딩 확인
+        const statusDiv = document.getElementById('font-status');
+        
+        function updateStatus(message, isSuccess) {
+            const div = document.createElement('div');
+            div.className = `status ${isSuccess ? 'success' : 'error'}`;
+            div.textContent = message;
+            statusDiv.appendChild(div);
+        }
+        
+        // 즉시 확인
+        setTimeout(() => {
+            // Jalnan 2 폰트 확인
             if (document.fonts.check('16px "Jalnan 2"')) {
-                console.log('✅ Jalnan 2 폰트가 성공적으로 로드되었습니다.');
+                updateStatus('✅ Jalnan 2 폰트가 성공적으로 로드되었습니다!', true);
             } else {
-                console.log('❌ Jalnan 2 폰트 로딩에 실패했습니다.');
+                updateStatus('❌ Jalnan 2 폰트 로딩에 실패했습니다.', false);
             }
             
-            // Inter 폰트 로딩 확인
+            // Inter 폰트 확인
             if (document.fonts.check('16px "Inter"')) {
-                console.log('✅ Inter 폰트가 성공적으로 로드되었습니다.');
+                updateStatus('✅ Inter 폰트가 성공적으로 로드되었습니다!', true);
             } else {
-                console.log('❌ Inter 폰트 로딩에 실패했습니다.');
+                updateStatus('❌ Inter 폰트 로딩에 실패했습니다.', false);
             }
+        }, 1000);
+        
+        // 모든 폰트 로딩 완료 후 재확인
+        document.fonts.ready.then(() => {
+            updateStatus('🎉 모든 폰트 로딩이 완료되었습니다!', true);
+            
+            // 적용된 폰트 확인
+            const testElement = document.querySelector('.jalnan-test');
+            const computedStyle = window.getComputedStyle(testElement);
+            updateStatus(`현재 적용된 폰트: ${computedStyle.fontFamily}`, true);
         });
     </script>
 </body>
