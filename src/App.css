@@ -21,6 +21,11 @@ html, body {
   padding: 0;
 }
 
+/* CSS 변수 정의 */
+:root {
+  --font-jalnan: 'Jalnan 2', sans-serif;
+}
+
 /* Jalnan 2 폰트 강제 적용 */
 .jalnan-force,
 .jalnan-force *,
