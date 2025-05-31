@@ -38,29 +38,29 @@ const Container = styled.div`
 `;
 
 const Title = styled.h1<{ $isVisible: boolean }>`
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 24px;
-  line-height: 1.67;
-  letter-spacing: 4.17%;
-  text-align: center;
-  color: #000000;
-  margin: 0;
-  white-space: pre-line;
-  word-wrap: break-word;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 24px !important;
+  line-height: 1.67 !important;
+  letter-spacing: 4.17% !important;
+  text-align: center !important;
+  color: #000000 !important;
+  margin: 0 !important;
+  white-space: pre-line !important;
+  word-wrap: break-word !important;
   opacity: ${props => props.$isVisible ? 1 : 0};
   transition: opacity 0.5s ease;
 `;
 
 const StatusText = styled.h2<{ $isVisible: boolean }>`
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1.67;
-  letter-spacing: 4.17%;
-  text-align: center;
-  color: #000000;
-  margin: 0 0 24px 0;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  line-height: 1.67 !important;
+  letter-spacing: 4.17% !important;
+  text-align: center !important;
+  color: #000000 !important;
+  margin: 0 0 24px 0 !important;
   opacity: ${props => props.$isVisible ? 1 : 0};
   animation: ${props => props.$isVisible ? fadeIn : 'none'} 0.8s ease-out;
   transition: opacity 0.5s ease;
@@ -133,9 +133,9 @@ const RegenerateButton = styled.button`
   border: 2px solid #1F41BB;
   border-radius: 8px;
   color: #1F41BB;
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
   cursor: pointer;
   transition: all 0.3s ease;
 
@@ -222,7 +222,11 @@ const BrandNameGenerationStep: React.FC<BrandNameGenerationStepProps> = ({
 
   return (
     <Container>
-      <Title $isVisible={status === 'generating'}>
+      <Title 
+        $isVisible={status === 'generating'} 
+        className="brand-title"
+        style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+      >
         {status === 'generating' && (
           <>
             브랜드명을 생성하고<br />있습니다.
@@ -230,7 +234,11 @@ const BrandNameGenerationStep: React.FC<BrandNameGenerationStepProps> = ({
         )}
       </Title>
       
-      <StatusText $isVisible={status === 'complete'}>
+      <StatusText 
+        $isVisible={status === 'complete'} 
+        className="status-text"
+        style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+      >
         브랜드명이 만들어졌어요!
       </StatusText>
 
@@ -251,7 +259,11 @@ const BrandNameGenerationStep: React.FC<BrandNameGenerationStepProps> = ({
       </BrandNameContainer>
 
       {status === 'complete' && (
-        <RegenerateButton onClick={handleRegenerate}>
+        <RegenerateButton 
+          onClick={handleRegenerate} 
+          className="regen-button"
+          style={{ fontFamily: "'Jalnan 2', sans-serif" }}
+        >
           브랜드명 다시 생성하기
         </RegenerateButton>
       )}

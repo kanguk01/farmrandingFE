@@ -41,21 +41,22 @@ html, body {
   font-family: 'Jalnan 2', sans-serif !important;
 }
 
-/* 브랜딩 플로우 특정 요소들 */
-button, 
-span, 
-h1, 
-h2, 
-h3,
-div {
+/* 브랜딩 플로우 특정 요소들에 최고 우선순위 적용 */
+button,
+span,
+h1,
+h2,
+h3 {
   font-family: 'Jalnan 2', sans-serif !important;
 }
 
-/* 더 구체적인 선택자로 강제 적용 */
-button[data-font="jalnan"],
-span[data-font="jalnan"],
-h1[data-font="jalnan"],
-h2[data-font="jalnan"] {
+/* 더욱 구체적인 선택자로 강제 적용 */
+.step-text,
+.step-number,
+.brand-title,
+.status-text,
+.nav-button,
+.regen-button {
   font-family: 'Jalnan 2', sans-serif !important;
   font-weight: 400 !important;
 } 
