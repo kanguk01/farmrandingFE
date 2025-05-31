@@ -25,17 +25,50 @@
   unicode-range: U+AC00-D7AF, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
 }
 
-/* 강력한 Fallback 폰트 체인 - Google Fonts를 백업으로 추가 */
-:root {
-  --font-jalnan: 'Jalnan', 'JalnanAlt', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 'Spoqa Han Sans Neo', 'Source Han Sans KR', sans-serif;
-  --font-system: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  --font-weight-bold: 700; /* Jalnan 스타일 모방을 위한 굵은 weight */
+/* 눈누 폰트 최신 버전 */
+@font-face {
+  font-family: 'JalnanLatest';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+AC00-D7AF, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
 }
 
-/* 전역 폰트 설정 - CSS Variable 사용 */
+/* JavaScript로 로드되는 폰트들을 위한 플레이스홀더 */
+@font-face {
+  font-family: 'JalnanForce';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JalnanGoogleForce';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JalnanAPI';
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 최강 Fallback 폰트 체인 - 모든 가능한 Jalnan 변형 포함 */
+:root {
+  --font-jalnan: 'Jalnan', 'JalnanForce', 'JalnanGoogleForce', 'JalnanAPI', 'JalnanAlt', 'JalnanLatest', 'yg-jalnan', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 'Spoqa Han Sans Neo', 'Source Han Sans KR', sans-serif;
+  --font-jalnan-loaded: var(--font-jalnan); /* JavaScript에서 업데이트됨 */
+  --font-system: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-weight-bold: 800; /* 더 굵게 하여 Jalnan 느낌 강화 */
+}
+
+/* 전역 폰트 설정 - 로드된 폰트 우선 사용 */
 * {
-  font-family: var(--font-jalnan) !important;
-  font-weight: var(--font-weight-bold) !important; /* 기본적으로 굵게 */
+  font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
+  font-weight: var(--font-weight-bold) !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -43,12 +76,12 @@
 }
 
 html {
-  font-family: var(--font-jalnan) !important;
+  font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
   font-weight: var(--font-weight-bold) !important;
 }
 
 body {
-  font-family: var(--font-jalnan) !important;
+  font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
   font-weight: var(--font-weight-bold) !important;
 }
 
@@ -56,7 +89,7 @@ body {
 :lang(ko),
 [lang="ko"],
 .korean-text {
-  font-family: var(--font-jalnan) !important;
+  font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
   font-weight: var(--font-weight-bold) !important;
 }
 
@@ -71,9 +104,9 @@ body {
   font-weight: 400 !important;
 }
 
-/* Jalnan 폰트 강제 적용 클래스 */
+/* Jalnan 폰트 강제 적용 클래스 - 더 많은 변형 시도 */
 .jalnan-font {
-  font-family: var(--font-jalnan) !important;
+  font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
   font-weight: var(--font-weight-bold) !important;
 }
 
@@ -86,7 +119,7 @@ body {
 /* Noto Sans KR 전용 클래스 - Jalnan 대체용 */
 .noto-kr-bold {
   font-family: 'Noto Sans KR', sans-serif !important;
-  font-weight: 800 !important; /* 매우 굵게 하여 Jalnan 느낌 */
+  font-weight: 900 !important; /* 더욱 굵게 하여 Jalnan 느낌 */
 }
 
 /* 모바일 최적화 */
@@ -98,7 +131,7 @@ body {
   }
   
   body {
-    font-family: var(--font-jalnan) !important;
+    font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
     font-weight: var(--font-weight-bold) !important;
   }
 }
@@ -108,12 +141,12 @@ body {
   * {
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke: 0.01em transparent;
-    font-family: var(--font-jalnan) !important;
+    font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
     font-weight: var(--font-weight-bold) !important;
   }
   
   body {
-    font-family: var(--font-jalnan) !important;
+    font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
     font-weight: var(--font-weight-bold) !important;
   }
 }
@@ -121,7 +154,7 @@ body {
 /* Android Chrome 최적화 */
 @supports (font-feature-settings: "kern") {
   body {
-    font-family: var(--font-jalnan) !important;
+    font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
     font-weight: var(--font-weight-bold) !important;
   }
 }
@@ -138,25 +171,16 @@ body {
 @supports not (font-family: 'Jalnan') {
   * {
     font-family: 'Noto Sans KR', var(--font-system) !important;
-    font-weight: 800 !important;
+    font-weight: 900 !important;
   }
 }
 
 /* 제목용 폰트 - 굵기 강화 */
 .title-font,
 h1, h2, h3, h4, h5, h6 {
-  font-family: 
-    'Apple SD Gothic Neo',
-    'Malgun Gothic',
-    '맑은 고딕', 
-    'Noto Sans KR',
-    'Pretendard Variable',
-    'Pretendard',
-    -apple-system,
-    BlinkMacSystemFont,
-    sans-serif !important;
-  font-weight: 700 !important;
-  font-variation-settings: "wght" 700;
+  font-family: var(--font-jalnan-loaded, var(--font-jalnan)) !important;
+  font-weight: 900 !important;
+  font-variation-settings: "wght" 900;
   letter-spacing: -0.02em;
 }
 
@@ -172,4 +196,24 @@ h1, h2, h3, h4, h5, h6 {
   * {
     -webkit-font-smoothing: antialiased;
   }
+}
+
+/* 폰트 로딩 강제 시도 애니메이션 */
+@keyframes fontLoadForce {
+  0% { font-family: var(--font-jalnan); }
+  25% { font-family: 'JalnanForce', var(--font-jalnan); }
+  50% { font-family: 'JalnanGoogleForce', var(--font-jalnan); }
+  75% { font-family: 'JalnanAPI', var(--font-jalnan); }
+  100% { font-family: var(--font-jalnan-loaded, var(--font-jalnan)); }
+}
+
+/* 첫 3초 동안 폰트 강제 로딩 애니메이션 적용 */
+.font-loading {
+  animation: fontLoadForce 3s ease-in-out;
+}
+
+/* Critical CSS Override - 최고 우선순위 */
+html, body, *, *::before, *::after {
+  font-family: var(--font-jalnan-loaded, 'Jalnan', 'JalnanForce', 'JalnanGoogleForce', 'JalnanAPI', 'JalnanAlt', 'JalnanLatest', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif) !important;
+  font-weight: 800 !important;
 } 
