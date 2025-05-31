@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes } from 'styled-components';
+import Header from '../../components/common/Header';
 import DatePicker from '../../components/common/DatePicker/DatePicker';
 import GradeSelector from '../../components/common/GradeSelector/GradeSelector';
-import iconCancel from '../../assets/icon-cancel.svg';
 import iconCalendar from '../../assets/icon-calendar.svg';
 import iconGrade from '../../assets/icon-grade.svg';
 
@@ -39,50 +39,11 @@ const PageContainer = styled.div`
   position: relative;
 `;
 
-const PageHeader = styled.div`
-  width: 100%;
-  height: 47px;
-  background: #F4FAFF;
-  display: flex;
-  align-items: center;
-  padding: 0;
-  position: relative;
-  flex-shrink: 0;
-`;
-
-const CloseButton = styled.button`
-  position: absolute;
-  left: 15px;
-  top: 0;
-  width: 42px;
-  height: 42px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-
-  &:hover {
-    opacity: 0.7;
-  }
-
-  &:active {
-    opacity: 0.5;
-  }
-`;
-
-const CloseIcon = styled.img`
-  width: 21px;
-  height: 21px;
-`;
-
 const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 51px 16px 30px 16px;
+  padding: 107px 16px 30px 16px; /* 56px(Header) + 51px(기존) = 107px */
   flex: 1;
 `;
 
@@ -373,6 +334,14 @@ const PriceQuote: React.FC = () => {
     navigate('/');
   };
 
+  const handleLogoClick = () => {
+    navigate('/');
+  };
+
+  const handleMypageClick = () => {
+    navigate('/mypage');
+  };
+
   const handleNext = () => {
     if (!validateForm()) {
       alert('모든 필수 항목을 입력해주세요.');
@@ -414,11 +383,10 @@ const PriceQuote: React.FC = () => {
 
   return (
     <PageContainer>
-      <PageHeader>
-        <CloseButton onClick={handleClose} aria-label="닫기">
-          <CloseIcon src={iconCancel} alt="닫기" />
-        </CloseButton>
-      </PageHeader>
+      <Header
+        onClickLogo={handleLogoClick}
+        onClickMypage={handleMypageClick}
+      />
 
       <ContentArea>
         <MainContent>
