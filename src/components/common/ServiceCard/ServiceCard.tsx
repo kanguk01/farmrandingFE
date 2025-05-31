@@ -212,14 +212,18 @@ export type ServiceCardVariant = 'branding' | 'pricing';
 
 interface ServiceCardProps {
   variant: ServiceCardVariant;
-  onClick?: () => void;
+  title: React.ReactNode;
+  description: React.ReactNode;
+  bgSvg: string;
   className?: string;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
   variant,
-  onClick,
-  className,
+  title,
+  description,
+  bgSvg,
+  className
 }) => {
   const getIconSrc = () => {
     switch (variant) {
@@ -260,14 +264,10 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     }
   };
 
-  const handleClick = () => {
-    onClick?.();
-  };
-
   const textLines = getTextLines();
 
   return (
-    <CardContainer onClick={handleClick} className={className} variant={variant}>
+    <CardContainer variant={variant} className={className}>
       <IconContainer variant={variant}>
         <IconImage src={getIconSrc()} alt={getAltText()} />
       </IconContainer>

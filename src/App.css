@@ -11,7 +11,14 @@ html, body {
   margin: 0;
   padding: 0;
   overflow-x: hidden;
-  background-color: #F4FAFF;
+  background-color: #FFFFFF;
+  scroll-behavior: smooth;
+}
+
+@media (max-width: 480px) {
+  html, body {
+    background-color: #FFFFFF;
+  }
 }
 
 #root {
@@ -19,6 +26,8 @@ html, body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+  background: #FFFFFF;
+  scroll-behavior: smooth;
 }
 
 /* Jalnan 2 폰트 정의 */
