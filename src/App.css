@@ -1,13 +1,3 @@
-/* 폰트 파일 직접 로드 */
-@font-face {
-  font-family: 'Jalnan 2';
-  src: url('/src/font/Jalnan2.otf') format('opentype'),
-       url('/src/font/Jalnan2TTF.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* 전체 화면 완벽 채움을 위한 CSS 리셋 */
 * {
   margin: 0;
@@ -31,31 +21,42 @@ html, body {
   padding: 0;
 }
 
+/* Jalnan 2 폰트 정의 */
+@font-face {
+  font-family: 'Jalnan 2';
+  src: url('/fonts/Jalnan2.otf') format('opentype'),
+       url('/fonts/Jalnan2TTF.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 모든 요소에 Jalnan 2 폰트 적용 */
+* {
+  font-family: 'Jalnan 2', sans-serif !important;
+}
+
 /* CSS 변수 정의 */
 :root {
   --font-jalnan: 'Jalnan 2', sans-serif;
 }
 
-/* 모든 요소에 강제 적용 */
-* {
+/* 브랜딩 플로우 특정 요소들에 최고 우선순위 적용 */
+button,
+span,
+h1,
+h2,
+h3 {
   font-family: 'Jalnan 2', sans-serif !important;
 }
 
-/* 브랜딩 플로우 특정 요소들 */
-button, 
-span, 
-h1, 
-h2, 
-h3,
-div {
-  font-family: 'Jalnan 2', sans-serif !important;
-}
-
-/* 더 구체적인 선택자로 강제 적용 */
-button[data-font="jalnan"],
-span[data-font="jalnan"],
-h1[data-font="jalnan"],
-h2[data-font="jalnan"] {
+/* 더욱 구체적인 선택자로 강제 적용 */
+.step-text,
+.step-number,
+.brand-title,
+.status-text,
+.nav-button,
+.regen-button {
   font-family: 'Jalnan 2', sans-serif !important;
   font-weight: 400 !important;
 } 
