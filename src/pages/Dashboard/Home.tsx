@@ -205,10 +205,16 @@ const Home: React.FC<HomeProps> = ({ className }) => {
         <ServiceCardsContainer>
           <ServiceCard 
             variant="branding" 
+            title="브랜딩 서비스"
+            description="내 작물 브랜딩"
+            bgSvg=""
             onClick={handleBrandingClick}
           />
           <ServiceCard 
             variant="pricing" 
+            title="가격 서비스"
+            description="예상 가격 받아보기"
+            bgSvg=""
             onClick={handlePricingClick}
           />
         </ServiceCardsContainer>
