@@ -57,7 +57,7 @@ const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 51px 51px 0 51px;
+  padding: 51px 51px 130px 51px;
   flex: 1;
   min-height: 0;
 `;
@@ -68,7 +68,6 @@ const MainContent = styled.div`
   width: 100%;
   max-width: 300px;
   height: 100%;
-  max-height: calc(874px - 47px - 51px - 114px - 32px);
 `;
 
 const Title = styled.h1`
@@ -97,15 +96,27 @@ const KeywordGrid = styled.div`
   width: 100%;
   height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
   padding: 9px 15px 40px 15px;
   box-sizing: border-box;
   
-  /* 스크롤바 숨기기 */
+  /* 스크롤바 스타일링 */
   &::-webkit-scrollbar {
-    display: none;
+    width: 4px;
   }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+  
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(31, 65, 187, 0.3);
+    border-radius: 2px;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background: rgba(31, 65, 187, 0.5);
+  }
 `;
 
 const FadeOverlay = styled.div`
@@ -119,20 +130,33 @@ const FadeOverlay = styled.div`
   z-index: 1;
 `;
 
-const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: 114px;
+const FloatingButtonContainer = styled.div`
+  position: fixed;
+  bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 300px;
+  max-width: 320px;
   padding: 0 16px;
   box-sizing: border-box;
   display: flex;
   justify-content: stretch;
   align-items: stretch;
-  gap: 32px;
-  z-index: 2;
+  gap: 12px;
+  z-index: 100;
+  
+  /* 버튼들 위에 그라데이션 배경 추가 */
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    right: -20px;
+    height: 80px;
+    background: linear-gradient(transparent, rgba(244, 250, 255, 0.8), #F4FAFF);
+    border-radius: 0 0 20px 20px;
+    z-index: -1;
+  }
 `;
 
 const PrevButton = styled.button`
@@ -145,14 +169,18 @@ const PrevButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
   &:hover {
     background: #757575;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
   }
 
   &:active {
     background: #616161;
+    transform: translateY(0);
   }
 `;
 
@@ -166,14 +194,18 @@ const NextButton = styled.button<{ $disabled: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 
   &:hover {
     background: ${props => props.$disabled ? '#CCCCCC' : '#1a3a9e'};
+    transform: ${props => props.$disabled ? 'none' : 'translateY(-1px)'};
+    box-shadow: ${props => props.$disabled ? '0 4px 12px rgba(0, 0, 0, 0.1)' : '0 6px 16px rgba(31, 65, 187, 0.2)'};
   }
 
   &:active {
     background: ${props => props.$disabled ? '#CCCCCC' : '#163285'};
+    transform: ${props => props.$disabled ? 'none' : 'translateY(0)'};
   }
 `;
 
@@ -255,14 +287,14 @@ const CropAppealKeywords: React.FC = () => {
         </MainContent>
       </ContentArea>
 
-      <ButtonContainer>
+      <FloatingButtonContainer>
         <PrevButton onClick={handlePrev}>
           <ButtonText>이전</ButtonText>
         </PrevButton>
         <NextButton $disabled={isNextDisabled} onClick={handleNext} disabled={isNextDisabled}>
           <ButtonText>다음</ButtonText>
         </NextButton>
-      </ButtonContainer>
+      </FloatingButtonContainer>
     </PageContainer>
   );
 };

@@ -32,7 +32,7 @@ const slideInUp = keyframes`
 
 const PageContainer = styled.div`
   width: 100%;
-  height: 874px;
+  min-height: 874px;
   background: #F4FAFF;
   display: flex;
   flex-direction: column;
@@ -82,16 +82,16 @@ const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding-top: 40px;
+  padding: 40px 16px 30px 16px;
   flex: 1;
+  justify-content: center;
 `;
 
 const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 88px;
+  gap: 48px;
   width: 100%;
   max-width: 320px;
   animation: ${fadeIn} 0.8s ease-out;
@@ -260,13 +260,9 @@ const CalendarIcon = styled.img`
 `;
 
 const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: 114px;
-  left: 16px;
-  right: 16px;
+  width: 100%;
   max-width: 300px;
-  margin: 0 auto;
-  box-sizing: border-box;
+  margin-top: 32px;
   animation: ${slideInUp} 0.8s ease-out 0.4s both;
 `;
 
@@ -475,17 +471,17 @@ const PriceQuote: React.FC = () => {
               </DateInputContainer>
             </DateContainer>
           </FormContainer>
+
+          <ButtonContainer>
+            <SubmitButton 
+              onClick={handleNext}
+              disabled={!isFormValid()}
+            >
+              <ButtonText>결과 보기</ButtonText>
+            </SubmitButton>
+          </ButtonContainer>
         </MainContent>
       </ContentArea>
-
-      <ButtonContainer>
-        <SubmitButton 
-          onClick={handleNext}
-          disabled={!isFormValid()}
-        >
-          <ButtonText>결과 보기</ButtonText>
-        </SubmitButton>
-      </ButtonContainer>
 
       {showDatePicker && (
         <DatePicker

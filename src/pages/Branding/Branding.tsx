@@ -9,7 +9,7 @@ import iconGrade from '../../assets/icon-grade.svg';
 
 const PageContainer = styled.div`
   width: 100%;
-  height: 874px;
+  min-height: 874px;
   background: #F4FAFF;
   display: flex;
   flex-direction: column;
@@ -24,6 +24,7 @@ const Header = styled.div`
   align-items: center;
   padding: 0;
   position: relative;
+  flex-shrink: 0;
 `;
 
 const CloseButton = styled.button`
@@ -58,16 +59,17 @@ const ContentArea = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  padding-top: 40px;
+  padding: 40px 16px 30px 16px;
   flex: 1;
+  justify-content: center;
+  max-width: 100%;
 `;
 
 const MainContent = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 88px;
+  gap: 48px;
   width: 100%;
   max-width: 320px;
 `;
@@ -145,14 +147,9 @@ const GradeIcon = styled.img`
 `;
 
 const ButtonContainer = styled.div`
-  position: absolute;
-  bottom: 114px;
-  left: 50%;
-  transform: translateX(-50%);
   width: 100%;
   max-width: 300px;
-  padding: 0 16px;
-  box-sizing: border-box;
+  margin-top: 32px;
 `;
 
 interface BrandingFormData {
@@ -256,18 +253,18 @@ const Branding: React.FC = () => {
               </GradeInput>
             </GradeContainer>
           </FormContainer>
+
+          <ButtonContainer>
+            <Button
+              variant="primary"
+              onClick={handleNext}
+              disabled={!isFormValid}
+            >
+              다음
+            </Button>
+          </ButtonContainer>
         </MainContent>
       </ContentArea>
-
-      <ButtonContainer>
-        <Button
-          variant="primary"
-          onClick={handleNext}
-          disabled={!isFormValid}
-        >
-          다음
-        </Button>
-      </ButtonContainer>
 
       {showGradeSelector && (
         <GradeSelector
