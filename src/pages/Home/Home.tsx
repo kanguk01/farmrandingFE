@@ -656,23 +656,23 @@ const KakaoLoginButton = styled.button`
   
   /* 태블릿 */
   @media (min-width: 768px) {
-    max-width: 320px;
-    height: 52px;
-    padding: 10px;
+    max-width: 260px;
+    height: 40px;
+    padding: 0px;
   }
   
   /* 데스크탑 */
   @media (min-width: 1024px) {
-    max-width: 340px;
-    height: 56px;
-    padding: 12px;
+    max-width: 300px;
+    height: 44px;
+    padding: 0px;
   }
   
   /* 대형 화면 */
   @media (min-width: 1440px) {
-    max-width: 360px;
-    height: 60px;
-    padding: 14px;
+    max-width: 240px;
+    height: 40px;
+    padding: 0px;
   }
 `;
 
