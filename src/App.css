@@ -1,3 +1,13 @@
+/* 폰트 파일 직접 로드 */
+@font-face {
+  font-family: 'Jalnan 2';
+  src: url('./font/Jalnan2.otf') format('opentype'),
+       url('./font/Jalnan2TTF.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* 전체 화면 완벽 채움을 위한 CSS 리셋 */
 * {
   margin: 0;
@@ -19,4 +29,33 @@ html, body {
   min-height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+/* CSS 변수 정의 */
+:root {
+  --font-jalnan: 'Jalnan 2', sans-serif;
+}
+
+/* 모든 요소에 강제 적용 */
+* {
+  font-family: 'Jalnan 2', sans-serif !important;
+}
+
+/* 브랜딩 플로우 특정 요소들 */
+button, 
+span, 
+h1, 
+h2, 
+h3,
+div {
+  font-family: 'Jalnan 2', sans-serif !important;
+}
+
+/* 더 구체적인 선택자로 강제 적용 */
+button[data-font="jalnan"],
+span[data-font="jalnan"],
+h1[data-font="jalnan"],
+h2[data-font="jalnan"] {
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
 } 
