@@ -1,68 +1,92 @@
-/* Google Fonts Inter 임포트 */
+/* Google Fonts Inter - 안정적인 웹폰트 */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap');
 
-/* Jalnan 폰트 정의 - 다중 CDN 지원 */
-@font-face {
-  font-family: 'Jalnan 2';
-  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff') format('woff'),
-       url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2') format('woff2'),
-       url('https://unpkg.com/jalnan@latest/dist/JalnanOTF00.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-  unicode-range: U+AC00-D7AF, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
-}
-
-/* Jalnan 폰트 fallback - 더 많은 backup URL */
+/* Jalnan 폰트 정의 - 다중 백업과 최적화된 로딩 */
 @font-face {
   font-family: 'Jalnan';
   src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2') format('woff2'),
-       url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff') format('woff'),
-       url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2') format('woff2');
-  font-weight: 400;
+       url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* 더 안정적인 로딩을 위해 swap 사용 */
+  unicode-range: U+AC00-D7AF, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
+}
+
+/* 대체 Jalnan 폰트 소스 */
+@font-face {
+  font-family: 'JalnanAlt';
+  src: url('https://fonts.gstatic.com/ea/jalnan/v1/JalnanOTF.woff2') format('woff2'),
+       url('https://fonts.gstatic.com/ea/jalnan/v1/JalnanOTF.woff') format('woff');
+  font-weight: normal;
   font-style: normal;
   font-display: swap;
   unicode-range: U+AC00-D7AF, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
 }
 
-/* 기본 reset 및 폰트 설정 */
+/* 강력한 Fallback 폰트 체인 - Google Fonts를 백업으로 추가 */
+:root {
+  --font-jalnan: 'Jalnan', 'JalnanAlt', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', 'Spoqa Han Sans Neo', 'Source Han Sans KR', sans-serif;
+  --font-system: 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  --font-weight-bold: 700; /* Jalnan 스타일 모방을 위한 굵은 weight */
+}
+
+/* 전역 폰트 설정 - CSS Variable 사용 */
 * {
-  font-family: 'Jalnan 2', 'Jalnan', 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-jalnan) !important;
+  font-weight: var(--font-weight-bold) !important; /* 기본적으로 굵게 */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  font-variant-ligatures: none;
 }
 
-/* HTML 및 body 기본 설정 */
 html {
-  font-family: 'Jalnan 2', 'Jalnan', 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: var(--font-jalnan) !important;
+  font-weight: var(--font-weight-bold) !important;
 }
 
 body {
-  font-family: 'Jalnan 2', 'Jalnan', 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+  font-family: var(--font-jalnan) !important;
+  font-weight: var(--font-weight-bold) !important;
 }
 
-/* 한국어 텍스트에 대한 강화된 폰트 설정 */
+/* 한국어 텍스트 강제 적용 */
 :lang(ko),
 [lang="ko"],
 .korean-text {
-  font-family: 'Jalnan 2', 'Jalnan', 'Pretendard Variable', 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Apple Gothic', sans-serif !important;
+  font-family: var(--font-jalnan) !important;
+  font-weight: var(--font-weight-bold) !important;
 }
 
 /* Inter 폰트 클래스 */
 .inter-font {
   font-family: 'Inter', 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 400 !important;
+}
+
+.inter-text {
+  font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 400 !important;
 }
 
 /* Jalnan 폰트 강제 적용 클래스 */
 .jalnan-font {
-  font-family: 'Jalnan 2', 'Jalnan', 'Pretendard Variable', 'Pretendard', 'Noto Sans KR', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif !important;
+  font-family: var(--font-jalnan) !important;
+  font-weight: var(--font-weight-bold) !important;
 }
 
-/* 텍스트 렌더링 최적화 */
-.inter-text {
-  font-family: 'Inter', 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif !important;
+/* 시스템 폰트만 사용하는 클래스 */
+.system-font {
+  font-family: var(--font-system) !important;
+  font-weight: var(--font-weight-bold) !important;
+}
+
+/* Noto Sans KR 전용 클래스 - Jalnan 대체용 */
+.noto-kr-bold {
+  font-family: 'Noto Sans KR', sans-serif !important;
+  font-weight: 800 !important; /* 매우 굵게 하여 Jalnan 느낌 */
 }
 
 /* 모바일 최적화 */
@@ -74,7 +98,8 @@ body {
   }
   
   body {
-    font-family: 'Jalnan 2', 'Jalnan', 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif !important;
+    font-family: var(--font-jalnan) !important;
+    font-weight: var(--font-weight-bold) !important;
   }
 }
 
@@ -83,23 +108,68 @@ body {
   * {
     -webkit-font-smoothing: antialiased;
     -webkit-text-stroke: 0.01em transparent;
+    font-family: var(--font-jalnan) !important;
+    font-weight: var(--font-weight-bold) !important;
   }
   
   body {
-    font-family: 'Jalnan 2', 'Jalnan', 'Pretendard Variable', 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif !important;
+    font-family: var(--font-jalnan) !important;
+    font-weight: var(--font-weight-bold) !important;
   }
 }
 
-/* Android 최적화 */
+/* Android Chrome 최적화 */
 @supports (font-feature-settings: "kern") {
   body {
-    font-family: 'Jalnan 2', 'Jalnan', 'Pretendard Variable', 'Pretendard', 'Roboto', 'Noto Sans KR', 'Malgun Gothic', sans-serif !important;
+    font-family: var(--font-jalnan) !important;
+    font-weight: var(--font-weight-bold) !important;
   }
 }
 
-/* 웹폰트 로딩 실패시 대비책 */
-@media (prefers-reduced-data: reduce) {
+/* 폰트 로딩 실패 시 안전한 fallback */
+@media (prefers-reduced-motion: reduce) {
   * {
-    font-family: 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-family: var(--font-system) !important;
+    font-weight: var(--font-weight-bold) !important;
+  }
+}
+
+/* Jalnan 폰트 로딩 실패 시 Noto Sans KR로 fallback */
+@supports not (font-family: 'Jalnan') {
+  * {
+    font-family: 'Noto Sans KR', var(--font-system) !important;
+    font-weight: 800 !important;
+  }
+}
+
+/* 제목용 폰트 - 굵기 강화 */
+.title-font,
+h1, h2, h3, h4, h5, h6 {
+  font-family: 
+    'Apple SD Gothic Neo',
+    'Malgun Gothic',
+    '맑은 고딕', 
+    'Noto Sans KR',
+    'Pretendard Variable',
+    'Pretendard',
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif !important;
+  font-weight: 700 !important;
+  font-variation-settings: "wght" 700;
+  letter-spacing: -0.02em;
+}
+
+/* 저해상도 화면 대응 */
+@media (-webkit-min-device-pixel-ratio: 1) {
+  * {
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+}
+
+/* 고해상도 화면 대응 */
+@media (-webkit-min-device-pixel-ratio: 2) {
+  * {
+    -webkit-font-smoothing: antialiased;
   }
 } 
