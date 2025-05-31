@@ -1,16 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Home from './pages/Home/Home';
-import Branding from './pages/Branding/Branding';
-import BrandingKeywords from './pages/BrandingKeywords/BrandingKeywords';
-import BrandNameGeneration from './pages/BrandNameGeneration/BrandNameGeneration';
+import BrandingFlow from './pages/BrandingFlow/BrandingFlow';
 import BrandResult from './pages/BrandResult/BrandResult';
 import MyPage from './pages/MyPage/MyPage';
-import PriceQuote from './pages/PriceQuote/PriceQuote';
-import PriceResult from './pages/PriceResult/PriceResult';
-import CropAppealKeywords from './pages/CropAppealKeywords/CropAppealKeywords';
-import LogoImageKeywords from './pages/LogoImageKeywords/LogoImageKeywords';
-import GapVerification from './pages/GapVerification/GapVerification';
+import PriceQuoteFlow from './pages/PriceQuoteFlow/PriceQuoteFlow';
 import './App.css';
 
 const AppContainer = styled.div`
@@ -50,16 +44,10 @@ function App() {
         <ContentWrapper>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/branding" element={<Branding />} />
-            <Route path="/gap-verification" element={<GapVerification />} />
-            <Route path="/branding-keywords" element={<BrandingKeywords />} />
-            <Route path="/crop-appeal-keywords" element={<CropAppealKeywords />} />
-            <Route path="/logo-image-keywords" element={<LogoImageKeywords />} />
-            <Route path="/brand-name-generation" element={<BrandNameGeneration />} />
+            <Route path="/branding" element={<BrandingFlow />} />
             <Route path="/brand-result" element={<BrandResult />} />
             <Route path="/mypage" element={<MyPage />} />
-            <Route path="/price-quote" element={<PriceQuote />} />
-            <Route path="/price-result" element={<PriceResult />} />
+            <Route path="/price-quote" element={<PriceQuoteFlow />} />
             {/* 추가 페이지 라우트는 여기에 추가 */}
           </Routes>
         </ContentWrapper>

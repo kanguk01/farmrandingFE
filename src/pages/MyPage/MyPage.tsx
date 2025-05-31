@@ -164,6 +164,7 @@ const HistoryListContainer = styled.div`
   flex: 1;
   overflow-y: auto;
   box-sizing: border-box;
+  animation: ${fadeIn} 0.6s ease-out;
 `;
 
 const DateGroup = styled.div`
@@ -292,6 +293,7 @@ const MembershipContainer = styled.div`
   box-sizing: border-box;
   overflow-y: auto;
   flex: 1;
+  animation: ${fadeIn} 0.6s ease-out;
   
   /* 마이페이지 멤버십 탭에 맞는 스타일링 */
   .membership-list {
@@ -492,8 +494,8 @@ const MyPage: React.FC = () => {
 
   // PersonalInfo 데이터
   const personalData: PersonalInfoData = {
-    name: "기요미",
-    farmName: "기요미 하은팜",
+    name: "윤하은",
+    farmName: " 하은팜",
     location: "○○도 □□시 △△동"
   };
 
@@ -716,18 +718,28 @@ const MyPage: React.FC = () => {
   const renderTabContent = () => {
     switch (selectedTab) {
       case 'branding':
-        return renderBrandingContent();
+        return (
+          <div key="branding-content">
+            {renderBrandingContent()}
+          </div>
+        );
       case 'pricing':
-        return renderPricingContent();
+        return (
+          <div key="pricing-content">
+            {renderPricingContent()}
+          </div>
+        );
       case 'membership':
         return (
-          <MembershipContainer>
-            <MembershipList
-              plans={membershipPlans}
-              onSelectPlan={handleSelectPlan}
-              className="membership-list"
-            />
-          </MembershipContainer>
+          <div key="membership-content">
+            <MembershipContainer>
+              <MembershipList
+                plans={membershipPlans}
+                onSelectPlan={handleSelectPlan}
+                className="membership-list"
+              />
+            </MembershipContainer>
+          </div>
         );
       default:
         return null;
