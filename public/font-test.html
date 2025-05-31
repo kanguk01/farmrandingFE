@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>폰트 테스트 - 팜랜딩</title>
+    <title>폰트 종합 테스트 - 팜랜딩</title>
     
     <!-- DNS preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,129 +14,240 @@
     <!-- 폰트 preload -->
     <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2" as="font" type="font/woff2" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         /* Jalnan 폰트 정의 */
         @font-face {
-            font-family: 'Jalnan 2';
+            font-family: 'Jalnan';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2') format('woff2'),
                  url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff2') format('woff2'),
                  url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/JalnanOTF00.woff') format('woff');
-            font-weight: 400;
+            font-weight: normal;
             font-style: normal;
             font-display: swap;
         }
         
-        /* 기본 설정 */
-        * {
-            font-family: 'Jalnan 2', 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+        @font-face {
+            font-family: 'JalnanAlt';
+            src: url('https://fonts.gstatic.com/ea/jalnan/v1/JalnanOTF.woff2') format('woff2'),
+                 url('https://fonts.gstatic.com/ea/jalnan/v1/JalnanOTF.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        :root {
+            --font-jalnan: 'Jalnan', 'JalnanAlt', 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+            --font-weight-bold: 700;
         }
         
         body {
-            margin: 20px;
+            font-family: var(--font-jalnan);
+            font-weight: var(--font-weight-bold);
+            padding: 20px;
             background: #F4FAFF;
             line-height: 1.6;
-            font-family: 'Jalnan 2', 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
         }
         
-        .jalnan-test {
-            font-family: 'Jalnan 2', 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', sans-serif;
-            font-size: 24px;
-            color: #1F41BB;
+        .test-section {
             margin: 20px 0;
-            font-weight: 400;
-        }
-        
-        .inter-test {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            font-size: 16px;
-            color: #333;
-            margin: 20px 0;
-        }
-        
-        .fallback-test {
-            font-family: 'Pretendard Variable', 'Pretendard', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif;
-            font-size: 16px;
-            color: #666;
-            margin: 20px 0;
-        }
-        
-        .status {
-            background: #fff;
-            padding: 15px;
+            padding: 20px;
+            background: white;
             border-radius: 8px;
-            margin: 20px 0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
         
-        .success { border-left: 4px solid #10B981; }
-        .error { border-left: 4px solid #EF4444; }
-        
-        .service-card-test {
-            font-family: 'Jalnan 2', sans-serif;
-            font-size: 16px;
-            color: #1F41BB;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        .font-jalnan {
+            font-family: 'Jalnan', 'JalnanAlt', sans-serif;
+            font-weight: normal;
         }
+        
+        .font-noto-kr {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 800;
+        }
+        
+        .font-noto-kr-700 {
+            font-family: 'Noto Sans KR', sans-serif;
+            font-weight: 700;
+        }
+        
+        .font-system {
+            font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+            font-weight: 700;
+        }
+        
+        .service-card-style {
+            font-family: var(--font-jalnan);
+            font-weight: var(--font-weight-bold);
+            background: white;
+            padding: 16px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.25);
+            margin: 10px 0;
+        }
+        
+        .first-line {
+            font-size: 10px;
+            color: #1F41BB;
+            margin-bottom: 2px;
+        }
+        
+        .second-line {
+            font-size: 16px;
+            color: #000000;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #e9ecef;
+        }
+        
+        .font-name {
+            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 8px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+        }
+        
+        .font-test-text {
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+        
+        .status-good { border-color: #28a745; }
+        .status-fallback { border-color: #ffc107; }
+        .status-fail { border-color: #dc3545; }
     </style>
 </head>
 <body>
-    <h1 class="jalnan-test">팜랜딩 폰트 테스트 🚀</h1>
+    <h1>🎨 팜랜딩 폰트 종합 테스트</h1>
     
-    <div class="service-card-test">
-        <div style="font-size: 10px; margin-bottom: 2px; color: #1F41BB;">마케팅은 저희가 할게요.</div>
-        <div style="font-size: 16px;">내 작물 브랜딩</div>
+    <div class="test-section">
+        <h2>1. 메인 폰트 스택 테스트</h2>
+        <div class="service-card-style">
+            <div class="first-line">마케팅은 저희가 할게요.</div>
+            <div class="second-line">내 작물 브랜딩</div>
+        </div>
+        <div class="service-card-style">
+            <div class="first-line">적정 가격 찾아드릴게요.</div>
+            <div class="second-line">예상 가격 받아보기</div>
+        </div>
     </div>
     
-    <p class="jalnan-test">Jalnan 2 폰트: 브랜딩이 만들어졌어요!</p>
-    <p class="inter-test">Inter 폰트: This is a test for Inter font.</p>
-    <p class="fallback-test">Fallback 폰트: 시스템 기본 폰트입니다.</p>
+    <div class="test-section">
+        <h2>2. 폰트별 비교 테스트</h2>
+        <div class="comparison-grid">
+            <div class="comparison-item" id="jalnan-test">
+                <div class="font-name">Jalnan 폰트</div>
+                <div class="font-jalnan font-test-text">팜랜딩 농업 브랜딩</div>
+                <div class="font-jalnan font-test-text">FARMRANDING 2025</div>
+            </div>
+            
+            <div class="comparison-item" id="noto-800-test">
+                <div class="font-name">Noto Sans KR (Weight 800)</div>
+                <div class="font-noto-kr font-test-text">팜랜딩 농업 브랜딩</div>
+                <div class="font-noto-kr font-test-text">FARMRANDING 2025</div>
+            </div>
+            
+            <div class="comparison-item" id="noto-700-test">
+                <div class="font-name">Noto Sans KR (Weight 700)</div>
+                <div class="font-noto-kr-700 font-test-text">팜랜딩 농업 브랜딩</div>
+                <div class="font-noto-kr-700 font-test-text">FARMRANDING 2025</div>
+            </div>
+            
+            <div class="comparison-item" id="system-test">
+                <div class="font-name">시스템 폰트</div>
+                <div class="font-system font-test-text">팜랜딩 농업 브랜딩</div>
+                <div class="font-system font-test-text">FARMRANDING 2025</div>
+            </div>
+        </div>
+    </div>
     
-    <div id="font-status"></div>
+    <div class="test-section">
+        <h2>3. 실제 사용 예시</h2>
+        <div style="font-family: var(--font-jalnan); font-weight: var(--font-weight-bold);">
+            <h3>내 정보</h3>
+            <p>농업인 김농부님의 맞춤 정보</p>
+            <p>• 브랜딩 히스토리: 3건</p>
+            <p>• 가격 견적: 5건</p>
+            <p>• 멤버십: Premium 등급</p>
+        </div>
+    </div>
+    
+    <div class="test-section">
+        <h2>4. 폰트 로딩 상태</h2>
+        <div id="font-status">
+            <p>폰트 로딩 확인 중...</p>
+        </div>
+    </div>
     
     <script>
         // 폰트 로딩 상태 확인
-        const statusDiv = document.getElementById('font-status');
+        document.fonts.ready.then(function() {
+            const jalnanLoaded = document.fonts.check('16px "Jalnan"');
+            const jalnanAltLoaded = document.fonts.check('16px "JalnanAlt"');
+            const notoKrLoaded = document.fonts.check('16px "Noto Sans KR"');
+            const interLoaded = document.fonts.check('16px "Inter"');
+            
+            const statusDiv = document.getElementById('font-status');
+            statusDiv.innerHTML = `
+                <p><strong>폰트 로딩 결과:</strong></p>
+                <p>Jalnan: ${jalnanLoaded ? '✅ 로드됨' : '❌ 로드 실패'}</p>
+                <p>JalnanAlt: ${jalnanAltLoaded ? '✅ 로드됨' : '❌ 로드 실패'}</p>
+                <p>Noto Sans KR: ${notoKrLoaded ? '✅ 로드됨' : '❌ 로드 실패'}</p>
+                <p>Inter: ${interLoaded ? '✅ 로드됨' : '❌ 로드 실패'}</p>
+                <hr>
+                <p><strong>사용자 환경:</strong></p>
+                <p>User Agent: ${navigator.userAgent}</p>
+                <p>플랫폼: ${navigator.platform}</p>
+                <p>언어: ${navigator.language}</p>
+            `;
+            
+            // 폰트별 상태 표시
+            updateFontStatus('jalnan-test', jalnanLoaded || jalnanAltLoaded);
+            updateFontStatus('noto-800-test', notoKrLoaded);
+            updateFontStatus('noto-700-test', notoKrLoaded);
+            updateFontStatus('system-test', true); // 시스템 폰트는 항상 사용 가능
+        });
         
-        function updateStatus(message, isSuccess) {
-            const div = document.createElement('div');
-            div.className = `status ${isSuccess ? 'success' : 'error'}`;
-            div.textContent = message;
-            statusDiv.appendChild(div);
+        function updateFontStatus(elementId, isLoaded) {
+            const element = document.getElementById(elementId);
+            if (isLoaded) {
+                element.classList.add('status-good');
+            } else {
+                element.classList.add('status-fallback');
+            }
         }
         
-        // 즉시 확인
-        setTimeout(() => {
-            // Jalnan 2 폰트 확인
-            if (document.fonts.check('16px "Jalnan 2"')) {
-                updateStatus('✅ Jalnan 2 폰트가 성공적으로 로드되었습니다!', true);
-            } else {
-                updateStatus('❌ Jalnan 2 폰트 로딩에 실패했습니다.', false);
-            }
-            
-            // Inter 폰트 확인
-            if (document.fonts.check('16px "Inter"')) {
-                updateStatus('✅ Inter 폰트가 성공적으로 로드되었습니다!', true);
-            } else {
-                updateStatus('❌ Inter 폰트 로딩에 실패했습니다.', false);
-            }
-        }, 1000);
-        
-        // 모든 폰트 로딩 완료 후 재확인
-        document.fonts.ready.then(() => {
-            updateStatus('🎉 모든 폰트 로딩이 완료되었습니다!', true);
-            
-            // 적용된 폰트 확인
-            const testElement = document.querySelector('.jalnan-test');
-            const computedStyle = window.getComputedStyle(testElement);
-            updateStatus(`현재 적용된 폰트: ${computedStyle.fontFamily}`, true);
+        // 폰트 로딩 이벤트 리스너
+        document.fonts.addEventListener('loadingdone', function(event) {
+            console.log('폰트 로딩 완료:', event);
         });
+        
+        document.fonts.addEventListener('loadingerror', function(event) {
+            console.error('폰트 로딩 실패:', event);
+        });
+        
+        // 추가 디버깅 정보
+        setTimeout(() => {
+            console.log('사용 가능한 폰트들:');
+            ['Jalnan', 'JalnanAlt', 'Noto Sans KR', 'Inter', 'Apple SD Gothic Neo'].forEach(font => {
+                const isAvailable = document.fonts.check(`16px "${font}"`);
+                console.log(`${font}: ${isAvailable ? '사용 가능' : '사용 불가'}`);
+            });
+        }, 2000);
     </script>
 </body>
 </html> 
