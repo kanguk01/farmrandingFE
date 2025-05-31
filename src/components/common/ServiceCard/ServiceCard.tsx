@@ -56,7 +56,7 @@ const TextContainer = styled.div`
 
 const MainText = styled.div`
   font-family: var(--font-jalnan) !important;
-  font-weight: normal;
+  font-weight: 800 !important;
   color: #000000;
   text-align: left;
   line-height: 1.18;
