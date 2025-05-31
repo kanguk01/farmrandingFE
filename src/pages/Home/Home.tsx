@@ -11,7 +11,7 @@ import iconPeople3 from '../../assets/icon-people3.svg';
 import FruitInfiniteRow from '../../components/common/FruitInfiniteRow';
 import Testimonial from '../../components/common/Testimonial';
 import logo from '../../assets/logo.svg';
-import chevronUp from '../../assets/icon-chevronUp.svg';
+import chevronUp from '../../assets/icon-ChevronUp.svg';
 import kakaoLogin from '../../assets/kakaoLogin.svg';
 
 // 과일 이미지 import
