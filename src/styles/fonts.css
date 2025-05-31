@@ -27,9 +27,9 @@
   unicode-range: U+AC00-D7AF, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF;
 }
 
-/* 전역 폰트 패밀리 설정 - 시스템 폰트 우선 */
+/* 전역 폰트 패밀리 설정 - Jalnan 폰트 우선 */
 * {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Jalnan 2', 'Jalnan', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
 /* 한글 텍스트에 대한 폰트 설정 - 강력한 fallback */
@@ -64,7 +64,7 @@ body,
     text-rendering: optimizeLegibility;
   }
   
-  /* 모바일에서 더 안전한 폰트 스택 */
+  /* 모바일에서도 Jalnan 폰트 우선 */
   body {
     font-family: 'Jalnan 2', 'Jalnan', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Malgun Gothic', '맑은 고딕', 'Apple SD Gothic Neo', sans-serif !important;
   }
@@ -77,9 +77,9 @@ body,
     -webkit-text-stroke: 0.01em transparent;
   }
   
-  /* iOS에서 웹폰트 대신 시스템 폰트 사용 */
+  /* iOS에서도 Jalnan 폰트를 우선으로 하되 시스템 폰트 fallback */
   body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Jalnan 2', 'Jalnan', sans-serif !important;
+    font-family: 'Jalnan 2', 'Jalnan', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif !important;
   }
 }
 
