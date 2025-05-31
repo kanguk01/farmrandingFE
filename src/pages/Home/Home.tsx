@@ -80,19 +80,24 @@ const LandingHeader = styled.header`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 16px;
   box-sizing: border-box;
 `;
 
 const HeaderContent = styled.div`
   width: 100%;
-  max-width: 402px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 16px;
   
-  @media (min-width: 481px) {
-    margin: 0 auto;
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    padding: 0 32px;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    padding: 0 40px;
   }
 `;
 
@@ -166,13 +171,27 @@ const SubTitle = styled.div`
 `;
 
 const FruitSection = styled.section`
-  width: 100%;
+  width: 100vw;
   background: transparent;
   padding: 0 0 32px 0;
   display: flex;
   flex-direction: column;
   gap: 12px;
   overflow: hidden;
+  margin-left: -16px;
+  margin-right: -16px;
+  
+  /* 태블릿에서도 전체 너비 */
+  @media (min-width: 768px) {
+    margin-left: -32px;
+    margin-right: -32px;
+  }
+  
+  /* 데스크탑에서도 전체 너비 */
+  @media (min-width: 1024px) {
+    margin-left: -40px;
+    margin-right: -40px;
+  }
 `;
 
 const ServiceSection = styled.section`

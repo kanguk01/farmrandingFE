@@ -216,6 +216,7 @@ interface ServiceCardProps {
   description: React.ReactNode;
   bgSvg: string;
   className?: string;
+  onClick?: () => void;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
@@ -223,7 +224,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   title,
   description,
   bgSvg,
-  className
+  className,
+  onClick
 }) => {
   const getIconSrc = () => {
     switch (variant) {
@@ -267,7 +269,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   const textLines = getTextLines();
 
   return (
-    <CardContainer variant={variant} className={className}>
+    <CardContainer variant={variant} className={className} onClick={onClick}>
       <IconContainer variant={variant}>
         <IconImage src={getIconSrc()} alt={getAltText()} />
       </IconContainer>
