@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import miniLogo from '../../assets/miniLogo.svg';
 import card1 from '../../assets/card1.svg';
@@ -11,6 +12,7 @@ import FruitInfiniteRow from '../../components/common/FruitInfiniteRow';
 import Testimonial from '../../components/common/Testimonial';
 import logo from '../../assets/logo.svg';
 import chevronUp from '../../assets/icon-chevronUp.svg';
+import kakaoLogin from '../../assets/kakaoLogin.svg';
 
 // 과일 이미지 import
 import fruit1 from '../../assets/fruit/Watermelon.svg';
@@ -133,33 +135,90 @@ const NavButton = styled.button`
 
 const HeroSection = styled.section`
   width: 100%;
-  min-height: 340px;
+  min-height: 300px;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 48px 0 32px 0;
+  padding: 40px 0 32px 0;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    min-height: 380px;
+    padding: 48px 0 40px 0;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    min-height: 450px;
+    padding: 60px 0 48px 0;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    min-height: 520px;
+    padding: 80px 0 60px 0;
+  }
 `;
 
 const BgLogo = styled.img`
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 204px;
-  height: 297px;
+  width: 220px;
+  height: 320px;
   opacity: 0.08;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    width: 280px;
+    height: 408px;
+    opacity: 0.1;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    width: 340px;
+    height: 496px;
+    opacity: 0.12;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    width: 400px;
+    height: 584px;
+    opacity: 0.15;
+  }
 `;
 
 const MainTitle = styled.h1`
   font-family: 'Jalnan 2', sans-serif !important;
-  font-size: 32px;
+  font-size: 36px;
   color: #1F41BB;
   text-align: center;
-  margin: 0 0 12px 0;
+  margin: 0 0 16px 0;
   z-index: 2;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    font-size: 44px;
+    margin: 0 0 20px 0;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    font-size: 52px;
+    margin: 0 0 24px 0;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    font-size: 60px;
+    margin: 0 0 28px 0;
+  }
 `;
 
 const SubTitle = styled.div`
@@ -168,6 +227,71 @@ const SubTitle = styled.div`
   color: #252525;
   text-align: center;
   z-index: 2;
+  line-height: 1.5;
+  margin-bottom: 32px;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    font-size: 22px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    font-size: 24px;
+    line-height: 1.7;
+    margin-bottom: 56px;
+  }
+`;
+
+const HighlightText = styled.span`
+  color: #1F41BB;
+  font-weight: 600;
+  font-size: 1.1em;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    font-size: 1.15em;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    font-size: 1.2em;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    font-size: 1.25em;
+  }
+`;
+
+const BrandText = styled.span`
+  color: #1F41BB;
+  font-weight: 700;
+  font-size: 1.15em;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    font-size: 1.2em;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    font-size: 1.25em;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    font-size: 1.3em;
+  }
 `;
 
 const FruitSection = styled.section`
@@ -196,37 +320,125 @@ const FruitSection = styled.section`
 
 const ServiceSection = styled.section`
   width: 100%;
-  padding: 32px 0 32px 0;
+  padding: 32px 0;
   background: transparent;
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 32px;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    padding: 48px 0;
+    gap: 40px;
+  }
+  
+  /* 데스크탑 - 가로 배치 */
+  @media (min-width: 1024px) {
+    padding: 64px 0;
+    flex-direction: row;
+    justify-content: center;
+    gap: 48px;
+    align-items: flex-start;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    padding: 80px 0;
+    gap: 64px;
+  }
 `;
 
 const ServiceBlock = styled.div`
   width: 100%;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 64px;
-  &:last-child { margin-bottom: 0; }
+  gap: 20px;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    max-width: 450px;
+    gap: 24px;
+  }
+  
+  /* 데스크탑 - 가로 배치용 */
+  @media (min-width: 1024px) {
+    width: 45%;
+    max-width: 480px;
+    gap: 24px;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    width: 42%;
+    max-width: 520px;
+    gap: 28px;
+  }
 `;
 
 const ServiceTitle = styled.h2`
   font-family: 'Jalnan 2', sans-serif !important;
-  font-size: 24px;
+  font-size: 20px;
   color: #1F41BB;
-  margin: 0 0 24px 0;
+  margin: 0;
   text-align: center;
+  line-height: 1.4;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    font-size: 26px;
+    line-height: 1.3;
+  }
 `;
 
 const ServiceCardImg = styled.img`
   width: 100%;
-  max-width: 331px;
+  max-width: 400px;
   height: auto;
   display: block;
   margin: 0 auto;
-  border-radius: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    max-width: 450px;
+    border-radius: 16px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    max-width: 480px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    
+    &:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    max-width: 520px;
+    border-radius: 24px;
+  }
 `;
 
 const TestimonialSection = styled.section`
@@ -235,9 +447,59 @@ const TestimonialSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 96px;
+  gap: 40px;
   position: relative;
   min-height: 400px;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    padding: 64px 0 80px 0;
+    gap: 48px;
+    min-height: 500px;
+  }
+  
+  /* 데스크탑 - 그리드 레이아웃 */
+  @media (min-width: 1024px) {
+    padding: 80px 0 100px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 48px 32px;
+    justify-items: center;
+    align-items: start;
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 400px;
+    
+    /* 첫 번째 후기 - 왼쪽 상단 */
+    & > *:nth-child(1) {
+      grid-column: 1;
+      grid-row: 1;
+      justify-self: end;
+    }
+    
+    /* 두 번째 후기 - 오른쪽 전체 (세로로 중앙 배치) */
+    & > *:nth-child(2) {
+      grid-column: 2;
+      grid-row: 1 / 3;
+      align-self: center;
+      justify-self: start;
+    }
+    
+    /* 세 번째 후기 - 왼쪽 하단 */
+    & > *:nth-child(3) {
+      grid-column: 1;
+      grid-row: 2;
+      justify-self: end;
+    }
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    padding: 100px 0 120px 0;
+    gap: 56px 40px;
+    max-width: 1200px;
+  }
 `;
 
 const ScrollToTopWrapper = styled.div`
@@ -245,32 +507,98 @@ const ScrollToTopWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin-top: 64px;
+  margin-top: 48px;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    margin-top: 64px;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    margin-top: 80px;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    margin-top: 100px;
+  }
 `;
 
 const ScrollToTopButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border: none;
   background: rgba(31, 65, 187, 0.1);
   border-radius: 50%;
   cursor: pointer;
-  transition: transform 0.18s, background 0.18s;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 10;
   
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) translateY(-2px);
     background: rgba(31, 65, 187, 0.2);
+    box-shadow: 0 8px 24px rgba(31, 65, 187, 0.15);
+  }
+  
+  &:active {
+    transform: scale(1.05) translateY(-1px);
+  }
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    width: 64px;
+    height: 64px;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    width: 72px;
+    height: 72px;
+    
+    &:hover {
+      transform: scale(1.15) translateY(-4px);
+      box-shadow: 0 12px 32px rgba(31, 65, 187, 0.2);
+    }
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    width: 80px;
+    height: 80px;
   }
 `;
 
 const ScrollToTopIcon = styled.img`
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   pointer-events: none;
+  transition: all 0.3s ease;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    width: 28px;
+    height: 28px;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    width: 32px;
+    height: 32px;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    width: 36px;
+    height: 36px;
+  }
+  
+  ${ScrollToTopButton}:hover & {
+    transform: translateY(-1px);
+  }
 `;
 
 const RelativeBgSection = styled.div`
@@ -299,7 +627,84 @@ const RelativeBgSection = styled.div`
   }
 `;
 
+const KakaoLoginButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 240px;
+  height: 40px;
+  background: #FEE500;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 0px;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    background: #FCDC00;
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    max-width: 320px;
+    height: 52px;
+    padding: 10px;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    max-width: 340px;
+    height: 56px;
+    padding: 12px;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    max-width: 360px;
+    height: 60px;
+    padding: 14px;
+  }
+`;
+
+const KakaoLoginImg = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  max-width: 264px;
+  max-height: 32px;
+  
+  /* 태블릿 */
+  @media (min-width: 768px) {
+    max-width: 300px;
+    max-height: 32px;
+  }
+  
+  /* 데스크탑 */
+  @media (min-width: 1024px) {
+    max-width: 316px;
+    max-height: 32px;
+  }
+  
+  /* 대형 화면 */
+  @media (min-width: 1440px) {
+    max-width: 332px;
+    max-height: 32px;
+  }
+`;
+
 const Home: React.FC = () => {
+  const navigate = useNavigate();
   const fruitImagesRow1 = fruitImages;
   const fruitImagesRow2 = [...fruitImages].reverse();
   const fruitImagesRow3 = shuffleArray(fruitImages);
@@ -309,6 +714,10 @@ const Home: React.FC = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+
+  const handleKakaoLogin = () => {
+    navigate('/home');
   };
 
   return (
@@ -336,9 +745,12 @@ const Home: React.FC = () => {
           <MainTitle>팜 랜 딩</MainTitle>
           <SubTitle>
             당신의 작물에<br />
-            브랜딩과 가격을 입히는 경험,<br />
-            팜랜딩에서 시작하세요.
+            <HighlightText>브랜딩</HighlightText>과 <HighlightText>가격</HighlightText>을 입히는 경험,<br />
+            <BrandText>팜랜딩</BrandText>에서 시작하세요.
           </SubTitle>
+          <KakaoLoginButton onClick={handleKakaoLogin}>
+            <KakaoLoginImg src={kakaoLogin} alt="카카오 로그인" />
+          </KakaoLoginButton>
         </HeroSection>
 
         {/* 섹션 2: 과일/채소 무한 스크롤 */}
