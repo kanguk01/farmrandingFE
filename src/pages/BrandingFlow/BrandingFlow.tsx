@@ -88,17 +88,33 @@ const StepIndicator = styled.div`
 `;
 
 const StepText = styled.span`
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  color: #666;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #666 !important;
+  letter-spacing: -0.02em !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+
+  * {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
 `;
 
 const StepNumber = styled.span`
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  color: #1F41BB;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #1F41BB !important;
+  letter-spacing: -0.02em !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+
+  * {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
 `;
 
 const StepContainer = styled.div<{ $direction: 'left' | 'right' }>`
@@ -122,11 +138,19 @@ const PrevButton = styled.button`
   border: none;
   border-radius: 8px;
   color: white;
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
   cursor: pointer;
   transition: all 0.2s ease;
+  letter-spacing: -0.02em !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+
+  * {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
 
   &:hover {
     background: #757575;
@@ -145,11 +169,19 @@ const NextButton = styled.button<{ $disabled: boolean }>`
   border: none;
   border-radius: 8px;
   color: white;
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 16px;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 16px !important;
   cursor: ${props => props.$disabled ? 'not-allowed' : 'pointer'};
   transition: all 0.2s ease;
+  letter-spacing: -0.02em !important;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+
+  * {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
 
   &:hover {
     background: ${props => props.$disabled ? '#CCCCCC' : '#1a3a9e'};
@@ -355,10 +387,10 @@ const BrandingFlow: React.FC = () => {
           <ProgressFill $progress={getProgress()} />
         </ProgressBar>
 
-        <StepIndicator>
-          <StepText>단계</StepText>
-          <StepNumber>{currentStep + 1}</StepNumber>
-          <StepText>/ 7</StepText>
+        <StepIndicator className="jalnan-force">
+          <StepText data-font="jalnan">단계</StepText>
+          <StepNumber data-font="jalnan">{currentStep + 1}</StepNumber>
+          <StepText data-font="jalnan">/ 7</StepText>
         </StepIndicator>
 
         <StepContainer $direction={animationDirection}>
@@ -367,9 +399,9 @@ const BrandingFlow: React.FC = () => {
 
         {/* 네비게이션 버튼들 - RESULT 단계에서는 숨김 */}
         {currentStep !== BrandingStep.RESULT && (
-          <NavigationContainer>
+          <NavigationContainer className="jalnan-force">
             {currentStep > BrandingStep.BASIC_INFO && (
-              <PrevButton onClick={handlePrev}>
+              <PrevButton onClick={handlePrev} data-font="jalnan">
                 이전
               </PrevButton>
             )}
@@ -378,6 +410,7 @@ const BrandingFlow: React.FC = () => {
               <NextButton 
                 $disabled={!isCurrentStepValid}
                 onClick={handleNext}
+                data-font="jalnan"
               >
                 {currentStep === BrandingStep.BRAND_NAME_GENERATION ? '완료' : '다음'}
               </NextButton>

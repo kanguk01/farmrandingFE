@@ -50,20 +50,44 @@ const Title = styled.h1<{ $isVisible: boolean }>`
   word-wrap: break-word !important;
   opacity: ${props => props.$isVisible ? 1 : 0};
   transition: opacity 0.5s ease;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+
+  * {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
+
+  &::before,
+  &::after {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
 `;
 
 const StatusText = styled.h2<{ $isVisible: boolean }>`
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 1.67;
-  letter-spacing: 4.17%;
-  text-align: center;
-  color: #000000;
-  margin: 0 0 24px 0;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 20px !important;
+  line-height: 1.67 !important;
+  letter-spacing: 4.17% !important;
+  text-align: center !important;
+  color: #000000 !important;
+  margin: 0 0 24px 0 !important;
   opacity: ${props => props.$isVisible ? 1 : 0};
   animation: ${props => props.$isVisible ? fadeIn : 'none'} 0.8s ease-out;
   transition: opacity 0.5s ease;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+
+  * {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
+
+  &::before,
+  &::after {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
 `;
 
 const BrandNameContainer = styled.div`
@@ -133,11 +157,24 @@ const RegenerateButton = styled.button`
   border: 2px solid #1F41BB;
   border-radius: 8px;
   color: #1F41BB;
-  font-family: 'Jalnan 2', sans-serif;
-  font-weight: 400;
-  font-size: 14px;
+  font-family: 'Jalnan 2', sans-serif !important;
+  font-weight: 400 !important;
+  font-size: 14px !important;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  letter-spacing: -0.02em !important;
+
+  * {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
+
+  &::before,
+  &::after {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
 
   &:hover {
     background: #1F41BB;
@@ -221,8 +258,8 @@ const BrandNameGenerationStep: React.FC<BrandNameGenerationStepProps> = ({
   };
 
   return (
-    <Container>
-      <Title $isVisible={status === 'generating'}>
+    <Container className="jalnan-force">
+      <Title $isVisible={status === 'generating'} data-font="jalnan">
         {status === 'generating' && (
           <>
             브랜드명을 생성하고<br />있습니다.
@@ -230,7 +267,7 @@ const BrandNameGenerationStep: React.FC<BrandNameGenerationStepProps> = ({
         )}
       </Title>
       
-      <StatusText $isVisible={status === 'complete'}>
+      <StatusText $isVisible={status === 'complete'} data-font="jalnan">
         브랜드명이 만들어졌어요!
       </StatusText>
 
@@ -251,7 +288,7 @@ const BrandNameGenerationStep: React.FC<BrandNameGenerationStepProps> = ({
       </BrandNameContainer>
 
       {status === 'complete' && (
-        <RegenerateButton onClick={handleRegenerate}>
+        <RegenerateButton onClick={handleRegenerate} data-font="jalnan">
           브랜드명 다시 생성하기
         </RegenerateButton>
       )}

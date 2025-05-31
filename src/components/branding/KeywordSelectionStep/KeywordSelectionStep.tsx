@@ -22,6 +22,18 @@ const Title = styled.h1`
   white-space: pre-line !important;
   word-wrap: break-word !important;
   flex-shrink: 0;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+
+  * {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
+
+  &::before,
+  &::after {
+    font-family: 'Jalnan 2', sans-serif !important;
+  }
 `;
 
 const KeywordContainer = styled.div`
@@ -135,8 +147,8 @@ const KeywordSelectionStep: React.FC<KeywordSelectionStepProps> = ({
   };
 
   return (
-    <Container>
-      <Title>{renderTitle()}</Title>
+    <Container className="jalnan-force">
+      <Title data-font="jalnan">{renderTitle()}</Title>
       
       <KeywordContainer>
         <KeywordGrid>
