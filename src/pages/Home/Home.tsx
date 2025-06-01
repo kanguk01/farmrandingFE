@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import miniLogo from '../../assets/miniLogo.svg';
@@ -14,33 +14,37 @@ import logo from '../../assets/logo.svg';
 import chevronUp from '../../assets/icon-ChevronUp.svg';
 import kakaoLogin from '../../assets/kakaoLogin.svg';
 
-// 과일 이미지 import
-import fruit1 from '../../assets/fruit/Watermelon.svg';
-import fruit2 from '../../assets/fruit/Garlic.svg';
-import fruit3 from '../../assets/fruit/image 13.svg';
-import fruit4 from '../../assets/fruit/image 17.svg';
-import fruit5 from '../../assets/fruit/Pumpkin from Recraft.svg';
-import fruit6 from '../../assets/fruit/Asparagus from Recraft.svg';
-import fruit7 from '../../assets/fruit/image 30.svg';
-import fruit8 from '../../assets/fruit/Lemon.svg';
-import fruit9 from '../../assets/fruit/Avocado from Recraft.svg';
-import fruit10 from '../../assets/fruit/Grape.svg';
-import fruit11 from '../../assets/fruit/Potato from Recraft.svg';
-import fruit12 from '../../assets/fruit/Chili Pepper.svg';
+// 과일 이미지 import - 최적화된 버전 사용 + 우선순위별로 정렬
+import fruit1 from '../../assets/fruit-optimized/image 13.svg'; // 183KB
+import fruit2 from '../../assets/fruit-optimized/image 30.svg'; // 184KB  
+import fruit3 from '../../assets/fruit-optimized/image 17.svg'; // 260KB
+import fruit4 from '../../assets/fruit-optimized/Garlic.svg'; // 490KB
+
+// 빠른 로딩용 기본 이미지들 (4개씩 3줄 = 12개)
+const fastLoadingFruits = [fruit1, fruit2, fruit3, fruit4];
+
+// 나머지 이미지들 (점진적 로딩용)
+import fruit5 from '../../assets/fruit-optimized/Chili Pepper.svg'; // 517KB
+import fruit6 from '../../assets/fruit-optimized/Avocado from Recraft.svg'; // 539KB
+import fruit7 from '../../assets/fruit-optimized/Watermelon.svg'; // 558KB
+import fruit8 from '../../assets/fruit-optimized/Grape.svg'; // 564KB
+
+const mediumLoadingFruits = [fruit5, fruit6, fruit7, fruit8];
+
+// 큰 이미지들 (마지막 로딩)
+import fruit9 from '../../assets/fruit-optimized/Potato from Recraft.svg'; // 734KB
+import fruit10 from '../../assets/fruit-optimized/Pumpkin from Recraft.svg'; // 785KB
+import fruit11 from '../../assets/fruit-optimized/Lemon.svg'; // 806KB
+import fruit12 from '../../assets/fruit-optimized/Asparagus from Recraft.svg'; // 844KB
+
+const slowLoadingFruits = [fruit9, fruit10, fruit11, fruit12];
+
+// 모든 과일 (점진적 확장)
+const allFruits = [...fastLoadingFruits, ...mediumLoadingFruits, ...slowLoadingFruits];
 
 const fruitImages = [
   fruit1, fruit2, fruit3, fruit4, fruit5, fruit6, fruit7, fruit8, fruit9, fruit10, fruit11, fruit12
 ];
-
-// 과일 배열 변형 함수
-function shuffleArray<T>(array: T[]): T[] {
-  const arr = [...array];
-  for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
-  }
-  return arr;
-}
 
 // 랜딩페이지 전체 래퍼 - 완전히 흰색 배경
 const LandingPageWrapper = styled.div`
@@ -304,17 +308,20 @@ const FruitSection = styled.section`
   overflow: hidden;
   margin-left: -16px;
   margin-right: -16px;
+  min-height: 270px;
   
   /* 태블릿에서도 전체 너비 */
   @media (min-width: 768px) {
     margin-left: -32px;
     margin-right: -32px;
+    min-height: 330px;
   }
   
   /* 데스크탑에서도 전체 너비 */
   @media (min-width: 1024px) {
     margin-left: -40px;
     margin-right: -40px;
+    min-height: 330px;
   }
 `;
 
@@ -705,9 +712,6 @@ const KakaoLoginImg = styled.img`
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
-  const fruitImagesRow1 = fruitImages;
-  const fruitImagesRow2 = [...fruitImages].reverse();
-  const fruitImagesRow3 = shuffleArray(fruitImages);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -753,11 +757,29 @@ const Home: React.FC = () => {
           </KakaoLoginButton>
         </HeroSection>
 
-        {/* 섹션 2: 과일/채소 무한 스크롤 */}
+        {/* 섹션 2: 과일/채소 무한 스크롤 - 순차적 로딩 */}
         <FruitSection>
-          <FruitInfiniteRow images={fruitImagesRow1} direction="left" speed={30} shadow={true} />
-          <FruitInfiniteRow images={fruitImagesRow2} direction="right" speed={50} shadow={true} />
-          <FruitInfiniteRow images={fruitImagesRow3} direction="left" speed={30} shadow={true} />
+          <FruitInfiniteRow 
+            images={fastLoadingFruits} 
+            direction="left" 
+            speed={20} 
+            shadow={true} 
+            rowIndex={0}
+          />
+          <FruitInfiniteRow 
+            images={mediumLoadingFruits} 
+            direction="right" 
+            speed={20} 
+            shadow={true} 
+            rowIndex={1}
+          />
+          <FruitInfiniteRow 
+            images={slowLoadingFruits} 
+            direction="left" 
+            speed={20} 
+            shadow={true} 
+            rowIndex={2}
+          />
         </FruitSection>
 
         <RelativeBgSection>
