@@ -1236,7 +1236,7 @@ const Home: React.FC = () => {
             <SectionMainTitle>팜랜딩에서 뭘 할 수 있나요?</SectionMainTitle>
             <SectionSubTitle>
               농산물에 브랜딩과 적정 가격을 제안하여<br />
-              농부님의 직거래를 성공으로 이끕니다.
+              농장주님의 직거래를 성공으로 이끕니다.
             </SectionSubTitle>
           </SectionHeader>
           
@@ -1262,10 +1262,10 @@ const Home: React.FC = () => {
           
           {/* 후기 섹션 헤더 */}
           <SectionHeader>
-            <SectionMainTitle>실제 농부님들의 후기</SectionMainTitle>
+            <SectionMainTitle>실제 농장주님들의 후기</SectionMainTitle>
             <SectionSubTitle>
               팜랜딩을 통해 성공적인 직거래를 경험한<br />
-              농부님들의 생생한 이야기를 들어보세요.
+              농장주님들의 생생한 이야기를 들어보세요.
             </SectionSubTitle>
           </SectionHeader>
           
@@ -1294,7 +1294,7 @@ const Home: React.FC = () => {
             <CtaTitle>직접 사용해보세요!</CtaTitle>
             <CtaSubtitle>
               농산물에 브랜딩과 적정 가격을 제안하여<br />
-              농부님의 직거래를 성공으로 이끌어보세요.
+              농장주님의 직거래를 성공으로 이끌어보세요.
             </CtaSubtitle>
             <CtaButton onClick={handleKakaoLogin}>
               <CtaButtonText>
